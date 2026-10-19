@@ -8,7 +8,7 @@
 <link rel="icon" href="/tsunagu/icon-128.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&display=swap" rel="stylesheet">
 <style>
   :root{--bg:#FFFDF7;--panel:#FAF4E6;--grid:#E7DDC7;--fg:#3A342B;--muted:#7B705E;--accent:#E9C46A;--accent-line:#D9B04F;--link:#8A6418;
     --font:"BIZ UDPGothic","Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic","YuGothic","Meiryo","Noto Sans JP",sans-serif}
@@ -19,7 +19,17 @@
   .wrap{max-width:860px;margin:0 auto;padding:0 20px}
   .top{display:flex;align-items:center;gap:10px;padding:14px 0;font-weight:700;font-size:20px}
   .top a{color:var(--fg);text-decoration:none;display:flex;align-items:center;gap:10px}
-  .top a.corp{margin-left:auto;font-size:13px;font-weight:400;color:var(--muted)}
+  /* Company bar: same lockup as the axirriadigital.com header */
+  .corpbar{background:#FFD21F;color:#1E2A5A}
+  .corpbar a{display:inline-flex;align-items:center;gap:8px;padding:7px 0;color:inherit;text-decoration:none}
+  .corpbar img{display:block;width:26px;height:26px}
+  .corpbar .nm{display:flex;align-items:baseline;gap:.3em;font-family:"Bricolage Grotesque",var(--font);font-size:17px;line-height:1;letter-spacing:-.015em;white-space:nowrap}
+  .corpbar .wm{font-weight:800;letter-spacing:-.02em;display:inline-flex;align-items:baseline}
+  .corpbar .wm i{font-style:normal;position:relative;display:inline-block}
+  .corpbar .wm b{position:absolute;left:50%;transform:translateX(-50%);bottom:.76em;display:block}
+  .corpbar .wm b.h{width:.15em;height:.15em;background:currentColor}
+  .corpbar .wm b.f{width:.24em;height:.24em;background:#fff}
+  .corpbar .r{font-weight:500}
   nav{display:flex;flex-wrap:wrap;gap:4px 18px;padding:0 0 12px;font-size:14px}
   nav a{text-decoration:none;color:var(--muted)} nav a[aria-current]{color:var(--fg);font-weight:700;border-bottom:2px solid var(--accent-line)}
   main{padding:28px 0 48px}
@@ -44,7 +54,8 @@
 </style>
 </head>
 <body>
-<header><div class="wrap"><div class="top"><a href="/tsunagu/"><svg width="28" height="28" viewBox="0 0 48 48" aria-hidden="true"><rect width="48" height="48" rx="11" fill="#E9C46A"/><text x="24" y="34" text-anchor="middle" font-family="BIZ UDPGothic, sans-serif" font-size="28" font-weight="700" fill="#3A342B">つ</text></svg>Tsunagu</a><a class="corp" href="/">Axirria Digital</a></div><nav><a href="/tsunagu/">Tsunagu</a><a href="/tsunagu/pricing/">料金</a><a href="/tsunagu/support/">サポート</a><a href="/tsunagu/faq/">よくある質問</a><a href="/tsunagu/privacy/" aria-current="page">プライバシーポリシー</a><a href="/tsunagu/terms/">利用規約</a></nav></div></header>
+<div class="corpbar"><div class="wrap"><a href="/" aria-label="Axirria Digital Vietnam"><img src="/logo-mark.svg" width="26" height="26" alt=""><span class="nm"><span class="wm" aria-hidden="true">ax<i>ı<b class="h"></b></i>rr<i>ı<b class="f"></b></i>a</span><span class="r" aria-hidden="true">digital vietnam</span></span></a></div></div>
+<header><div class="wrap"><div class="top"><a href="/tsunagu/"><svg width="28" height="28" viewBox="0 0 48 48" aria-hidden="true"><rect width="48" height="48" rx="11" fill="#E9C46A"/><text x="24" y="34" text-anchor="middle" font-family="BIZ UDPGothic, sans-serif" font-size="28" font-weight="700" fill="#3A342B">つ</text></svg>Tsunagu</a></div><nav><a href="/tsunagu/">Tsunagu</a><a href="/tsunagu/pricing/">料金</a><a href="/tsunagu/support/">サポート</a><a href="/tsunagu/faq/">よくある質問</a><a href="/tsunagu/privacy/" aria-current="page">プライバシーポリシー</a><a href="/tsunagu/terms/">利用規約</a></nav></div></header>
 <main><div class="wrap">
 
 <h1>プライバシーポリシー</h1>
@@ -136,6 +147,6 @@
 </table>
 
 </div></main>
-<footer><div class="wrap"><span>© 2026 <a href="/">Axirria Digital</a></span><span><a href="/tsunagu/tokushoho/">特定商取引法に基づく表記</a>　お問い合わせ：<a href="mailto:contact@axirriadigital.com">contact@axirriadigital.com</a></span></div></footer>
+<footer><div class="wrap"><span>© 2026 <a href="/">Axirria Digital Vietnam</a></span><span><a href="/tsunagu/tokushoho/">特定商取引法に基づく表記</a>　お問い合わせ：<a href="mailto:contact@axirriadigital.com">contact@axirriadigital.com</a></span></div></footer>
 </body>
 </html>
