@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>名刺をスプレッドシートで管理する方法とよくある質問｜Tsunagu</title>
+<meta name="description" content="名刺の写真をAIで読み取り、Google スプレッドシートの顧客リストに追加するアドオン「Tsunagu」の使い方とよくある質問。無料枠、Excelでの保存、縦書き、重複、HEIC、データの保存、料金・解約、インボイス登録番号の形式チェック、入金消込について回答します。">
+<link rel="icon" href="/tsunagu/icon-128.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#FFFDF7;--panel:#FAF4E6;--grid:#E7DDC7;--fg:#3A342B;--muted:#7B705E;--accent:#E9C46A;--accent-line:#D9B04F;--link:#8A6418;
+    --font:"BIZ UDPGothic","Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic","YuGothic","Meiryo","Noto Sans JP",sans-serif}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.85 var(--font)}
+  a{color:var(--link)}
+  header{background:var(--panel);border-bottom:1px solid var(--grid)}
+  .wrap{max-width:860px;margin:0 auto;padding:0 20px}
+  .top{display:flex;align-items:center;gap:10px;padding:14px 0;font-weight:700;font-size:20px}
+  .top a{color:var(--fg);text-decoration:none;display:flex;align-items:center;gap:10px}
+  nav{display:flex;flex-wrap:wrap;gap:4px 18px;padding:0 0 12px;font-size:14px}
+  nav a{text-decoration:none;color:var(--muted)} nav a[aria-current]{color:var(--fg);font-weight:700;border-bottom:2px solid var(--accent-line)}
+  main{padding:28px 0 48px}
+  h1{font-size:28px;line-height:1.5;margin:8px 0 20px}
+  h2{font-size:19px;margin:36px 0 10px;padding-bottom:4px;border-bottom:1px solid var(--grid)}
+  h3{font-size:17px;margin:28px 0 8px}
+  h4{font-size:15px;margin:20px 0 6px}
+  .toc p{margin:0 0 4px} .toc ol{margin:0}
+  td{font-weight:400}
+  p,li{margin:6px 0} ul,ol{padding-left:1.4em}
+  .lead{font-size:17px;color:var(--muted)}
+  .meta{color:var(--muted);font-size:14px}
+  table{border-collapse:collapse;width:100%;margin:12px 0;font-size:15px}
+  th,td{border:1px solid var(--grid);padding:8px 12px;text-align:left;vertical-align:top}
+  th{background:var(--panel);font-weight:700}
+  .box{background:var(--panel);border:1px solid var(--grid);border-radius:6px;padding:14px 18px;margin:16px 0}
+  .shots img{display:block;width:100%;border:1px solid var(--grid);border-radius:6px;margin:14px 0}
+  .btn{display:inline-block;background:var(--accent);border:1px solid var(--accent-line);color:var(--fg);font-weight:700;text-decoration:none;padding:9px 18px;border-radius:5px}
+  footer{border-top:1px solid var(--grid);background:var(--panel);color:var(--muted);font-size:13px;padding:18px 0}
+  footer .wrap{display:flex;flex-wrap:wrap;gap:6px 18px;justify-content:space-between}
+  @media (max-width:600px){h1{font-size:23px} th,td{padding:6px 8px}}
+</style>
+<link rel="canonical" href="https://axirriadigital.com/tsunagu/faq/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="名刺をスプレッドシートで管理する方法とよくある質問｜Tsunagu">
+<meta property="og:description" content="名刺の写真をAIで読み取り、Google スプレッドシートの顧客リストに追加するアドオン「Tsunagu」の使い方とよくある質問。無料枠、Excelでの保存、縦書き、重複、HEIC、データの保存、料金・解約、インボイス登録番号の形式チェック、入金消込について回答します。">
+<meta property="og:url" content="https://axirriadigital.com/tsunagu/faq/">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://axirriadigital.com/tsunagu/screenshot-1-meishi.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": "https://axirriadigital.com/tsunagu/faq/#faq",
+  "url": "https://axirriadigital.com/tsunagu/faq/",
+  "name": "名刺をスプレッドシートで管理する方法とよくある質問｜Tsunagu",
+  "inLanguage": "ja",
+  "dateModified": "2026-10-19",
+  "author": {
+    "@type": "Organization",
+    "name": "AXIRRIA DIGITAL VIETNAM LIMITED COMPANY（Tsunagu 開発者）",
+    "url": "https://axirriadigital.com/"
+  },
+  "about": {
+    "@type": "SoftwareApplication",
+    "name": "Tsunagu",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web（Google スプレッドシートのアドオン）",
+    "url": "https://axirriadigital.com/tsunagu/",
+    "offers": [
+      {
+        "@type": "Offer",
+        "name": "無料",
+        "price": "0",
+        "priceCurrency": "JPY"
+      },
+      {
+        "@type": "Offer",
+        "name": "ライト",
+        "price": "500",
+        "priceCurrency": "JPY"
+      },
+      {
+        "@type": "Offer",
+        "name": "スタンダード",
+        "price": "1500",
+        "priceCurrency": "JPY"
+      }
+    ]
+  },
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "名刺をスプレッドシートで管理するにはどうすればいいですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Google スプレッドシート用アドオン「Tsunagu」を使うと、名刺の写真をまとめて選ぶだけで、会社名・氏名・部署・役職・メール・電話・住所などを AI が読み取り、スプレッドシートの「顧客リスト」シートに1行ずつ追加できます。\n読み取った内容は元の名刺画像と並べて確認してから追加します。データは最初から自分のスプレッドシートに入るため、別のアプリから書き出す手間はありません。手順は「名刺の写真から顧客リストを作る手順」をご覧ください。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "名刺をExcelで管理したい場合はどうすればいいですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tsunagu は Google スプレッドシートのアドオンなので、名刺はまずスプレッドシートの顧客リストに取り込みます。Excel で使いたい場合は、スプレッドシートの［ファイル］→［ダウンロード］→［Microsoft Excel（.xlsx）］で、そのまま Excel ファイルとして保存できます。\n取り込みはスプレッドシートで行い、社内の管理は Excel で続ける、という使い方もできます。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Excelで管理している既存の名刺リストもスプレッドシートに入れられますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "はい。既存の Excel ファイル（.xlsx）は、Google スプレッドシートの［ファイル］→［インポート］で読み込めます。これはスプレッドシート標準の機能です。\n読み込んだあと、Tsunagu の表記ゆれ整形で「（株）」と「株式会社」、全角数字、電話番号の形式などをそろえられます。変更前と変更後を見比べてから一括で整えます。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "名刺の読み取りは無料でできますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "はい。Tsunagu の AI による名刺の読み取りは、毎月10枚まで無料です。上限は毎月1日（日本時間）にリセットされます。\n無料枠を使い切っても、料金が自動で発生することはありません。表記ゆれの整形、インボイス登録番号の形式チェック、入金消込など、名刺の読み取り以外の機能はすべて無料です。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "少人数の会社でも名刺をデータ化できますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "はい。Tsunagu は Google スプレッドシートに追加して使うアドオンなので、専用の名刺管理システムを導入しなくても、いつものスプレッドシートで名刺をデータ化できます。\n料金は無料（毎月10枚まで）、ライト（月額500円・毎月50枚まで）、スタンダード（月額1,500円・毎月300枚まで）の3つで、いずれも税込です。有料プランはアドオンを開いた Google アカウントに紐づきます。法人でまとまって利用したい場合は contact@axirriadigital.com までご相談ください。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "縦書きの名刺も読み取れますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "縦書きの名刺も、横書きの名刺と同じ手順で読み取りにかけられます。ただし文字の並び方が横書きと異なるため、AI が読み違えることがあります。\nTsunagu では読み取り結果を元の名刺画像と並べて表示し、AI の読み取りに自信がない欄には色を付けます。追加する前に画像と見比べて確認してください。読み取れなかった名刺は空欄の行として表示されるので、手で入力できます。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "同じ人の名刺が重複していたらどうなりますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tsunagu は、顧客リストにすでにある会社・人を、追加する前に「重複」としてお知らせします。展示会などで同じ人と2回名刺交換していても、二重に登録する前に気づけます。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "iPhoneで撮ったHEICの写真は使えますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "はい。Tsunagu の名刺の読み取りは、iPhone の HEIC 形式の写真に対応しています。複数枚の写真をまとめて選ぶことも、ZIP にまとめた写真を読み込むこともできます。\nピンぼけ・暗い・反射が強い写真は読み取れないことがあります。無地の机の上に置き、明るい場所で1枚ずつ画面いっぱいに撮るのがおすすめです。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "読み取り結果に色の付いた欄や「修正」と表示された欄があります。",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "色の付いた欄は、AI の読み取りに自信がない欄です。画像と見比べて確認してください。別の読み方の候補があれば「こちらにする」で切り替えられます。\n「修正」と表示された欄は、地名のローマ字表記など、名刺に印刷された表記が一般的な表記と違うため Tsunagu が直した箇所です。どこを・なぜ直したかが表示され、「元に戻す」を押すと印刷どおりに戻せます。メール・電話番号・URL・人名は自動で変更しません。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "名刺の画像や読み取ったデータはサーバーに保存されますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "保存されません。Tsunagu では、名刺の画像と読み取り結果は読み取りのためだけにサーバーで処理し、保存しません（ログにも残しません）。読み取った内容は、ご自身のスプレッドシートにだけ書き込まれます。\n読み取りには Google LLC の Vertex AI（Gemini）を使用しており、AI の処理は日本国外で行われる場合があります。利用者のデータを AI モデルの学習に利用することはありません。運営者は名刺の内容やスプレッドシートを閲覧できません。詳しくはプライバシーポリシーをご覧ください。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "料金はいくらですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tsunagu の料金プランは次の3つです（税込）。\n無料：名刺の読み取り 毎月10枚まで\nライト：月額500円、名刺の読み取り 毎月50枚まで\nスタンダード：月額1,500円、名刺の読み取り 毎月300枚まで\n名刺の読み取り以外の機能は、どのプランでも無料です。上限は毎月1日（日本時間）にリセットされ、無料枠で読み取った分も有料プランの枚数に含めて数えます。読み取りに失敗した場合（サーバーのエラーなど）は数えません。1日あたりの読み取り枚数にも上限があります。\n有料プランは、［拡張機能］→［Tsunagu］→［名刺の読み取り…］を開き、画面上部の「有料プラン」から申し込めます。お支払いは Stripe の決済画面でクレジットカードで行います。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "解約や返金はどうなりますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tsunagu の有料プランは毎月自動で更新され、お申し込み日と同じ日に翌月分が請求されます。プランの変更・解約・カード情報の変更・領収書の取得は、「名刺の読み取り」画面の「プランの変更・解約・領収書」から行えます。\n解約すると次回以降の請求は発生せず、お支払い済みの期間の終わりまで利用できます。日割りでの返金はありません。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "インボイス登録番号の形式チェックでは何がわかりますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tsunagu のインボイス確認は、顧客リストにある登録番号（T＋13桁）の形式とチェックディジットを確認し、全角・小文字・桁数の誤りを見つける無料の機能です。\n形式が正しいことは、その番号が登録されていることを意味しません。登録の有無は、国税庁の「インボイス制度適格請求書発行事業者公表サイト」で確認してください。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "入金消込をスプレッドシートでできますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "はい。Tsunagu の入金消込は無料で使えます。銀行の入出金明細（CSV）を貼り付けると、半角カナの振込名義でも「請求一覧」シートの請求先と照合し、「消込済み」「金額差異」「該当なし」を表示します。\n請求一覧シートは、［拡張機能］→［Tsunagu］→［シートを準備（顧客リスト・請求一覧）］で作成できます。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "アンインストールするにはどうすればいいですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "スプレッドシートの［拡張機能］→［アドオン］→［アドオンを管理］から Tsunagu を選び、［アンインストール］を押します。アカウントのアクセス権も取り消す場合は、Google アカウントの［セキュリティ］→［サードパーティ製のアプリとサービス］から Tsunagu を削除してください。\nアンインストールしても、すでにスプレッドシートに書き込まれた内容は残ります。"
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "@id": "https://axirriadigital.com/tsunagu/faq/#howto",
+  "name": "名刺の写真から Google スプレッドシートの顧客リストを作る手順",
+  "inLanguage": "ja",
+  "supply": [
+    {
+      "@type": "HowToSupply",
+      "name": "名刺の写真（スマートフォンで撮影したもので可）"
+    }
+  ],
+  "tool": [
+    {
+      "@type": "HowToTool",
+      "name": "Google アカウント"
+    },
+    {
+      "@type": "HowToTool",
+      "name": "Tsunagu（Google スプレッドシート用アドオン）"
+    }
+  ],
+  "step": [
+    {
+      "@type": "HowToStep",
+      "position": 1,
+      "name": "アドオンをインストールする",
+      "text": "Google Workspace Marketplace で「Tsunagu」を開いてインストールします。スプレッドシートの［拡張機能］→［アドオン］→［アドオンを取得］で「Tsunagu」を検索しても追加できます。",
+      "url": "https://axirriadigital.com/tsunagu/faq/#step-1"
+    },
+    {
+      "@type": "HowToStep",
+      "position": 2,
+      "name": "シートを準備する",
+      "text": "スプレッドシートを開き、［拡張機能］→［Tsunagu］→［シートを準備（顧客リスト・請求一覧）］を選びます。",
+      "url": "https://axirriadigital.com/tsunagu/faq/#step-2"
+    },
+    {
+      "@type": "HowToStep",
+      "position": 3,
+      "name": "名刺の写真を選ぶ",
+      "text": "［拡張機能］→［Tsunagu］→［名刺の読み取り…］を選び、名刺の写真をまとめて選びます。複数枚・ZIP・iPhone の HEIC 形式に対応しています。",
+      "url": "https://axirriadigital.com/tsunagu/faq/#step-3"
+    },
+    {
+      "@type": "HowToStep",
+      "position": 4,
+      "name": "元の画像と見比べて確認する",
+      "text": "読み取り結果は元の名刺画像と並べて表示されます。色の付いた欄は AI の読み取りに自信がない欄なので、画像と見比べて確認します。",
+      "url": "https://axirriadigital.com/tsunagu/faq/#step-4"
+    },
+    {
+      "@type": "HowToStep",
+      "position": 5,
+      "name": "顧客リストに追加する",
+      "text": "確認できたら顧客リストに追加します。すでにリストにある会社・人は、追加する前に「重複」としてお知らせが出ます。",
+      "url": "https://axirriadigital.com/tsunagu/faq/#step-5"
+    }
+  ]
+}
+</script>
+<style>.qa h3{margin-top:24px}</style>
+</head>
+<body>
+<header><div class="wrap"><div class="top"><a href="/tsunagu/"><svg width="28" height="28" viewBox="0 0 48 48" aria-hidden="true"><rect width="48" height="48" rx="11" fill="#E9C46A"/><text x="24" y="34" text-anchor="middle" font-family="BIZ UDPGothic, sans-serif" font-size="28" font-weight="700" fill="#3A342B">つ</text></svg>Tsunagu</a></div><nav><a href="/tsunagu/">Tsunagu</a><a href="/tsunagu/pricing/">料金</a><a href="/tsunagu/support/">サポート</a><a href="/tsunagu/faq/" aria-current="page">よくある質問</a><a href="/tsunagu/privacy/">プライバシーポリシー</a><a href="/tsunagu/terms/">利用規約</a></nav></div></header>
+<main><div class="wrap">
+
+  <article>
+    <h1>名刺をスプレッドシートで管理する方法と、よくある質問</h1>
+    <p class="meta">最終更新：<time datetime="2026-10-19">2026年10月19日</time>　／　執筆：Tsunagu 開発者（AXIRRIA DIGITAL VIETNAM LIMITED COMPANY）</p>
+    <p class="lead">Tsunagu は、名刺の写真を AI で読み取り、Google スプレッドシート™ の顧客リストに追加するアドオンです。このページでは、名刺の取り込み方と、よくいただく質問への回答を、開発者がまとめています。</p>
+
+    <div class="toc box">
+      <p><strong>よくある質問</strong></p>
+      <ul>
+        <li><a href="#spreadsheet">名刺をスプレッドシートで管理するにはどうすればいいですか？</a></li>
+        <li><a href="#excel">名刺をExcelで管理したい場合はどうすればいいですか？</a></li>
+        <li><a href="#excel-import">Excelで管理している既存の名刺リストもスプレッドシートに入れられますか？</a></li>
+        <li><a href="#free">名刺の読み取りは無料でできますか？</a></li>
+        <li><a href="#small-team">少人数の会社でも名刺をデータ化できますか？</a></li>
+        <li><a href="#tategaki">縦書きの名刺も読み取れますか？</a></li>
+        <li><a href="#duplicate">同じ人の名刺が重複していたらどうなりますか？</a></li>
+        <li><a href="#heic">iPhoneで撮ったHEICの写真は使えますか？</a></li>
+        <li><a href="#colored">読み取り結果に色の付いた欄や「修正」と表示された欄があります。</a></li>
+        <li><a href="#data">名刺の画像や読み取ったデータはサーバーに保存されますか？</a></li>
+        <li><a href="#price">料金はいくらですか？</a></li>
+        <li><a href="#cancel">解約や返金はどうなりますか？</a></li>
+        <li><a href="#invoice">インボイス登録番号の形式チェックでは何がわかりますか？</a></li>
+        <li><a href="#keshikomi">入金消込をスプレッドシートでできますか？</a></li>
+        <li><a href="#uninstall">アンインストールするにはどうすればいいですか？</a></li>
+      </ul>
+    </div>
+
+    <h2 id="howto">名刺の写真から Google スプレッドシートの顧客リストを作る手順</h2>
+    <div class="box">
+      <p>用意するもの：Google アカウント、名刺の写真（スマートフォンで撮影したもので可）</p>
+      <ol>
+        <li id="step-1"><strong>アドオンをインストールする</strong><br>Google Workspace Marketplace で「Tsunagu」を開いてインストールします。スプレッドシートの［拡張機能］→［アドオン］→［アドオンを取得］で「Tsunagu」を検索しても追加できます。</li>
+        <li id="step-2"><strong>シートを準備する</strong><br>スプレッドシートを開き、［拡張機能］→［Tsunagu］→［シートを準備（顧客リスト・請求一覧）］を選びます。</li>
+        <li id="step-3"><strong>名刺の写真を選ぶ</strong><br>［拡張機能］→［Tsunagu］→［名刺の読み取り…］を選び、名刺の写真をまとめて選びます。複数枚・ZIP・iPhone の HEIC 形式に対応しています。</li>
+        <li id="step-4"><strong>元の画像と見比べて確認する</strong><br>読み取り結果は元の名刺画像と並べて表示されます。色の付いた欄は AI の読み取りに自信がない欄なので、画像と見比べて確認します。</li>
+        <li id="step-5"><strong>顧客リストに追加する</strong><br>確認できたら顧客リストに追加します。すでにリストにある会社・人は、追加する前に「重複」としてお知らせが出ます。</li>
+      </ol>
+    </div>
+    <p>Excel で使いたい場合は、取り込んだあとにスプレッドシートの［ファイル］→［ダウンロード］→［Microsoft Excel（.xlsx）］で保存できます。</p>
+    <a class="btn" href="https://workspace.google.com/marketplace/app/tsunagu/1029461036733">Google Workspace Marketplace でインストール（無料）</a>
+
+    <h2>名刺の取り込み</h2>
+      <section class="qa" id="spreadsheet">
+        <h3>名刺をスプレッドシートで管理するにはどうすればいいですか？</h3>
+        <p>Google スプレッドシート用アドオン「Tsunagu」を使うと、名刺の写真をまとめて選ぶだけで、会社名・氏名・部署・役職・メール・電話・住所などを AI が読み取り、スプレッドシートの「顧客リスト」シートに1行ずつ追加できます。</p>
+        <p>読み取った内容は元の名刺画像と並べて確認してから追加します。データは最初から自分のスプレッドシートに入るため、別のアプリから書き出す手間はありません。手順は「名刺の写真から顧客リストを作る手順」をご覧ください。</p>
+      </section>
+      <section class="qa" id="excel">
+        <h3>名刺をExcelで管理したい場合はどうすればいいですか？</h3>
+        <p>Tsunagu は Google スプレッドシートのアドオンなので、名刺はまずスプレッドシートの顧客リストに取り込みます。Excel で使いたい場合は、スプレッドシートの［ファイル］→［ダウンロード］→［Microsoft Excel（.xlsx）］で、そのまま Excel ファイルとして保存できます。</p>
+        <p>取り込みはスプレッドシートで行い、社内の管理は Excel で続ける、という使い方もできます。</p>
+      </section>
+      <section class="qa" id="excel-import">
+        <h3>Excelで管理している既存の名刺リストもスプレッドシートに入れられますか？</h3>
+        <p>はい。既存の Excel ファイル（.xlsx）は、Google スプレッドシートの［ファイル］→［インポート］で読み込めます。これはスプレッドシート標準の機能です。</p>
+        <p>読み込んだあと、Tsunagu の表記ゆれ整形で「（株）」と「株式会社」、全角数字、電話番号の形式などをそろえられます。変更前と変更後を見比べてから一括で整えます。</p>
+      </section>
+      <section class="qa" id="free">
+        <h3>名刺の読み取りは無料でできますか？</h3>
+        <p>はい。Tsunagu の AI による名刺の読み取りは、毎月10枚まで無料です。上限は毎月1日（日本時間）にリセットされます。</p>
+        <p>無料枠を使い切っても、料金が自動で発生することはありません。表記ゆれの整形、インボイス登録番号の形式チェック、入金消込など、名刺の読み取り以外の機能はすべて無料です。</p>
+      </section>
+      <section class="qa" id="small-team">
+        <h3>少人数の会社でも名刺をデータ化できますか？</h3>
+        <p>はい。Tsunagu は Google スプレッドシートに追加して使うアドオンなので、専用の名刺管理システムを導入しなくても、いつものスプレッドシートで名刺をデータ化できます。</p>
+        <p>料金は無料（毎月10枚まで）、ライト（月額500円・毎月50枚まで）、スタンダード（月額1,500円・毎月300枚まで）の3つで、いずれも税込です。有料プランはアドオンを開いた Google アカウントに紐づきます。法人でまとまって利用したい場合は contact@axirriadigital.com までご相談ください。</p>
+      </section>
+      <section class="qa" id="tategaki">
+        <h3>縦書きの名刺も読み取れますか？</h3>
+        <p>縦書きの名刺も、横書きの名刺と同じ手順で読み取りにかけられます。ただし文字の並び方が横書きと異なるため、AI が読み違えることがあります。</p>
+        <p>Tsunagu では読み取り結果を元の名刺画像と並べて表示し、AI の読み取りに自信がない欄には色を付けます。追加する前に画像と見比べて確認してください。読み取れなかった名刺は空欄の行として表示されるので、手で入力できます。</p>
+      </section>
+      <section class="qa" id="duplicate">
+        <h3>同じ人の名刺が重複していたらどうなりますか？</h3>
+        <p>Tsunagu は、顧客リストにすでにある会社・人を、追加する前に「重複」としてお知らせします。展示会などで同じ人と2回名刺交換していても、二重に登録する前に気づけます。</p>
+      </section>
+      <section class="qa" id="heic">
+        <h3>iPhoneで撮ったHEICの写真は使えますか？</h3>
+        <p>はい。Tsunagu の名刺の読み取りは、iPhone の HEIC 形式の写真に対応しています。複数枚の写真をまとめて選ぶことも、ZIP にまとめた写真を読み込むこともできます。</p>
+        <p>ピンぼけ・暗い・反射が強い写真は読み取れないことがあります。無地の机の上に置き、明るい場所で1枚ずつ画面いっぱいに撮るのがおすすめです。</p>
+      </section>
+      <section class="qa" id="colored">
+        <h3>読み取り結果に色の付いた欄や「修正」と表示された欄があります。</h3>
+        <p>色の付いた欄は、AI の読み取りに自信がない欄です。画像と見比べて確認してください。別の読み方の候補があれば「こちらにする」で切り替えられます。</p>
+        <p>「修正」と表示された欄は、地名のローマ字表記など、名刺に印刷された表記が一般的な表記と違うため Tsunagu が直した箇所です。どこを・なぜ直したかが表示され、「元に戻す」を押すと印刷どおりに戻せます。メール・電話番号・URL・人名は自動で変更しません。</p>
+      </section>
+    <h2>データと料金</h2>
+      <section class="qa" id="data">
+        <h3>名刺の画像や読み取ったデータはサーバーに保存されますか？</h3>
+        <p>保存されません。Tsunagu では、名刺の画像と読み取り結果は読み取りのためだけにサーバーで処理し、保存しません（ログにも残しません）。読み取った内容は、ご自身のスプレッドシートにだけ書き込まれます。</p>
+        <p>読み取りには Google LLC の Vertex AI（Gemini）を使用しており、AI の処理は日本国外で行われる場合があります。利用者のデータを AI モデルの学習に利用することはありません。運営者は名刺の内容やスプレッドシートを閲覧できません。詳しくはプライバシーポリシーをご覧ください。</p>
+      </section>
+      <section class="qa" id="price">
+        <h3>料金はいくらですか？</h3>
+        <p>Tsunagu の料金プランは次の3つです（税込）。</p>
+        <ul><li>無料：名刺の読み取り 毎月10枚まで</li><li>ライト：月額500円、名刺の読み取り 毎月50枚まで</li><li>スタンダード：月額1,500円、名刺の読み取り 毎月300枚まで</li></ul>
+        <p>名刺の読み取り以外の機能は、どのプランでも無料です。上限は毎月1日（日本時間）にリセットされ、無料枠で読み取った分も有料プランの枚数に含めて数えます。読み取りに失敗した場合（サーバーのエラーなど）は数えません。1日あたりの読み取り枚数にも上限があります。</p>
+        <p>有料プランは、［拡張機能］→［Tsunagu］→［名刺の読み取り…］を開き、画面上部の「有料プラン」から申し込めます。お支払いは Stripe の決済画面でクレジットカードで行います。</p>
+      </section>
+      <section class="qa" id="cancel">
+        <h3>解約や返金はどうなりますか？</h3>
+        <p>Tsunagu の有料プランは毎月自動で更新され、お申し込み日と同じ日に翌月分が請求されます。プランの変更・解約・カード情報の変更・領収書の取得は、「名刺の読み取り」画面の「プランの変更・解約・領収書」から行えます。</p>
+        <p>解約すると次回以降の請求は発生せず、お支払い済みの期間の終わりまで利用できます。日割りでの返金はありません。</p>
+      </section>
+    <h2>無料の事務機能</h2>
+      <section class="qa" id="invoice">
+        <h3>インボイス登録番号の形式チェックでは何がわかりますか？</h3>
+        <p>Tsunagu のインボイス確認は、顧客リストにある登録番号（T＋13桁）の形式とチェックディジットを確認し、全角・小文字・桁数の誤りを見つける無料の機能です。</p>
+        <p>形式が正しいことは、その番号が登録されていることを意味しません。登録の有無は、国税庁の「インボイス制度適格請求書発行事業者公表サイト」で確認してください。</p>
+      </section>
+      <section class="qa" id="keshikomi">
+        <h3>入金消込をスプレッドシートでできますか？</h3>
+        <p>はい。Tsunagu の入金消込は無料で使えます。銀行の入出金明細（CSV）を貼り付けると、半角カナの振込名義でも「請求一覧」シートの請求先と照合し、「消込済み」「金額差異」「該当なし」を表示します。</p>
+        <p>請求一覧シートは、［拡張機能］→［Tsunagu］→［シートを準備（顧客リスト・請求一覧）］で作成できます。</p>
+      </section>
+    <h2>その他</h2>
+      <section class="qa" id="uninstall">
+        <h3>アンインストールするにはどうすればいいですか？</h3>
+        <p>スプレッドシートの［拡張機能］→［アドオン］→［アドオンを管理］から Tsunagu を選び、［アンインストール］を押します。アカウントのアクセス権も取り消す場合は、Google アカウントの［セキュリティ］→［サードパーティ製のアプリとサービス］から Tsunagu を削除してください。</p>
+        <p>アンインストールしても、すでにスプレッドシートに書き込まれた内容は残ります。</p>
+      </section>
+
+    <h2>お問い合わせ</h2>
+    <p>ここにない質問や不具合のご報告は、<a href="/tsunagu/support/">サポート</a>のページ、またはメール（<a href="mailto:contact@axirriadigital.com">contact@axirriadigital.com</a>）でお送りください。名刺の内容・氏名・メールアドレスなどの個人情報は書かないでください。</p>
+    <a class="btn" href="https://workspace.google.com/marketplace/app/tsunagu/1029461036733">Google Workspace Marketplace でインストール（無料）</a>
+    <p class="meta">Google スプレッドシート™、Google Sheets™、Google Workspace™ は Google LLC の商標です。Microsoft Excel は Microsoft Corporation の商標です。</p>
+  </article>
+
+</div></main>
+<footer><div class="wrap"><span>© 2026 Axirria Digital</span><span><a href="/tsunagu/tokushoho/">特定商取引法に基づく表記</a>　お問い合わせ：<a href="mailto:contact@axirriadigital.com">contact@axirriadigital.com</a></span></div></footer>
+</body>
+</html>
