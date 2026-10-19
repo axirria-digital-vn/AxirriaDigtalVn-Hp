@@ -113,3 +113,10 @@ if (fs.existsSync('products')) {
     console.log('copied products/' + name + ' -> ' + OUT + '/' + name);
   }
 }
+// sitemap.xml: every dist/**/index.html (pages and product pages), written last so nothing is missed.
+const pageDirs = (dir) => fs.readdirSync(dir, { withFileTypes: true }).flatMap((e) =>
+  e.isDirectory() ? pageDirs(path.join(dir, e.name)) : e.name === 'index.html' ? [path.relative(OUT, dir)] : []);
+const urls = pageDirs(OUT).sort().map((d) => cfg.siteUrl + (d ? d.split(path.sep).join('/') + '/' : ''));
+fs.writeFileSync(path.join(OUT, 'sitemap.xml'), '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+  + urls.map((u) => `<url><loc>${esc(u)}</loc></url>`).join('\n') + '\n</urlset>\n');
+console.log('wrote', path.join(OUT, 'sitemap.xml'), '(' + urls.length + ' urls)');
