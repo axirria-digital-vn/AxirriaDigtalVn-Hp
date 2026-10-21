@@ -68,4 +68,9 @@ assert.equal((await post(ok, limited)).status, 429); assert.equal(calls.length, 
 // routing
 assert.equal((await worker.fetch(new Request('https://s/api/contact'), env)).status, 405);
 assert.equal(await (await worker.fetch(new Request('https://s/'), env)).text(), 'asset');
+for (const [from, to] of [['/products/', '/#products'], ['/products', '/#products'], ['/en/products/', '/en/#products']]) {
+  const r = await worker.fetch(new Request('https://s' + from), env);
+  assert.equal(r.status, 301); assert.equal(r.headers.get('location'), 'https://s' + to, from);
+}
+assert.equal(await (await worker.fetch(new Request('https://s/products/x'), env)).text(), 'asset', 'only the old page redirects');
 console.log('worker tests passed');
