@@ -24,7 +24,7 @@
       "group": "own",
       "status": { "ja": "開発中", "en": "In development" },
       "href": { "ja": "/perito/", "en": "/perito/" },
-      "tagline": { "ja": "Jira 向けアプリ。Atlassian Marketplace での公開に向けて開発中です。", "en": "An app for Jira, in development for release on the Atlassian Marketplace." }
+      "tagline": { "ja": "Jira の課題とその周辺の課題を文脈に、テストケースを作成します。不明確な要件は推測せずにチームへ質問します。", "en": "Writes test cases for a Jira issue using the issues around it as context, and asks your team about unclear requirements before guessing." }
     }
   ]
 }
