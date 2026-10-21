@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Perito for Jira – Documentation</title>
+<meta name="description" content="How to install and use Perito for Jira.">
+<style>
+:root{--fg:#1f2328;--muted:#57606a;--bg:#fff;--line:#d0d7de;--accent:#0b5cad;--badge:#fff4cc;--badge-line:#e3b341}
+@media (prefers-color-scheme:dark){:root{--fg:#e6edf3;--muted:#9da7b3;--bg:#0d1117;--line:#30363d;--accent:#4c9bf0;--badge:#3a2f0b;--badge-line:#9e7a14}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+main{max-width:760px;margin:0 auto;padding:40px 16px 64px;overflow-wrap:anywhere}h1{font-size:1.75rem;line-height:1.3;margin:0 0 4px}
+h2{font-size:1.15rem;margin:32px 0 8px}p.meta{color:var(--muted);margin:0 0 24px}a{color:var(--accent)}
+ul,ol{padding-left:1.4em}li{margin:4px 0}table{border-collapse:collapse;width:100%}th,td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+dl{display:grid;grid-template-columns:max-content 1fr;gap:6px 16px;margin:0}dt{font-weight:600}dd{margin:0}
+.badge{display:inline-block;font-size:.8rem;font-weight:600;background:var(--badge);border:1px solid var(--badge-line);border-radius:4px;padding:1px 8px;vertical-align:middle;margin-left:8px}
+footer{margin-top:48px;padding-top:16px;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem}
+@media (max-width:520px){dl{grid-template-columns:1fr}dd{margin-bottom:8px}}
+</style>
+</head>
+<body>
+<main>
+<h1>Perito for Jira – Documentation</h1>
+<p class="meta">Last updated: [[ngày đưa lên web]]</p>
+<p>Perito writes test cases for a Jira issue using the issues around it as context. It asks your team about unclear requirements before guessing, suggests tests for areas a change may affect, and warns you about tests you may already have.</p>
+<h2>1. Install</h2>
+<ol>
+<li>Open Perito for Jira on the Atlassian Marketplace and select "Get it now".</li>
+<li>Choose your Jira Cloud site. A site admin approves the permissions listed below.</li>
+<li>Open any Jira issue. The Perito panel appears on the issue [[đúng vị trí/tên panel trong UI]].</li>
+</ol>
+<p>Perito is free for teams of up to 10 users.</p>
+<h2>2. Permissions</h2>
+<table>
+<thead><tr><th>Permission</th><th>Why Perito needs it</th></tr></thead>
+<tbody><tr><td colspan="2">[[mỗi scope trong manifest.yml một dòng + lý do – Duy cung cấp]]</td></tr></tbody>
+</table>
+<p>Perito sends issue text to OpenRouter (openrouter.ai) to generate test cases. No other external hosts are contacted [[Duy xác nhận danh sách egress]].</p>
+<h2>3. Generate test cases</h2>
+<ol>
+<li>Open a Jira issue and select [[tên nút, ví dụ "Generate tests"]] in the Perito panel.</li>
+<li>Perito collects context: linked issues, issues in the same epic or parent, and issues that share business keywords, including bugs.</li>
+<li>Perito writes [[6–10]] test cases. Each test case has steps, test data and an expected result.</li>
+<li>Review each test case: keep it, edit it or drop it. When you drop a test, you can give a short reason.</li>
+</ol>
+<h2>4. Clarifying questions</h2>
+<p>If a requirement is unclear, Perito posts one comment on the issue titled "[Perito] Questions before writing tests", with numbered questions (Q1, Q2…).</p>
+<ul>
+<li>Answer in a normal Jira comment, for example "Q1: Not applied to sale items." Your BA does not need to open Perito.</li>
+<li>Test cases that depend on an unanswered question stay in Draft and show "Waiting for answer: Q2".</li>
+<li>When an answer arrives, Perito rewrites the related draft tests. If the trigger misses an answer, select [[tên nút "Read answers again"]].</li>
+<li>To use draft tests without waiting, select [[tên nút "Use now"]]. These tests keep the label "not clarified".</li>
+<li>If an answer differs from the issue description, Perito follows the answer and shows a warning so the issue can be updated.</li>
+</ul>
+<h2>5. Impact tests</h2>
+<p>Besides tests for the issue itself, Perito suggests 1–3 tests for each area the change may affect (up to 5 areas). Each impact test shows where it came from:</p>
+<ul>
+<li>🔗 a linked issue (including bugs; for a bug, the test repeats the steps that caused it under the new conditions)</li>
+<li>📝 the "Affected areas" section of the issue</li>
+<li>💬 your team's answer to the affected-areas question</li>
+<li>🤖 an AI suggestion, used only when the sources above give nothing. These tests show the quoted text from both issues and should be checked before use.</li>
+</ul>
+<p>Tip: add an "Affected areas" section to your issues. Perito then uses it directly and does not need to ask.</p>
+<h2>6. Possible duplicates</h2>
+<p>Perito compares new test cases with existing tests of the issue and of the related issues it used.</p>
+<ul>
+<li>Possible duplicate: grouped under "Possible duplicates" and dropped by default. Open the group to compare with the existing test and decide.</li>
+<li>Adds to an existing test: shown under "Adds to existing tests", with what is new.</li>
+</ul>
+<p>Perito never changes your existing tests.</p>
+<h2>7. Limits</h2>
+<p>[[giới hạn số lần sinh theo gói, nếu có]]</p>
+<h2>8. Data and privacy</h2>
+<ul>
+<li>Does data leave Atlassian? Yes. Issue text needed for test generation is sent to OpenRouter and an AI model provider with zero data retention.</li>
+<li>Is my data used to train AI models? No.</li>
+<li>Where is data stored? [[Forge Storage / Forge SQL]] within your Atlassian site.</li>
+</ul>
+<p>Details: <a href="/perito/privacy/">Privacy Policy</a> and <a href="/perito/dpa/">Data Processing Addendum</a>.</p>
+<h2>9. Uninstall</h2>
+<p>A site admin can uninstall Perito from Jira settings → Apps → Manage apps. Data stored by Perito is deleted according to Atlassian Forge data deletion rules. Comments and test cases that Perito wrote to Jira stay until you delete them.</p>
+<h2>10. Support</h2>
+<p><a href="mailto:contact@axirriadigital.com">contact@axirriadigital.com</a> · <a href="/perito/support/">Support page</a></p>
+<footer>Perito for Jira · Axirria Digital Vietnam Limited Company · <a href="/perito/support/">Support</a> · <a href="/perito/privacy/">Privacy Policy</a> · <a href="/perito/dpa/">Data Processing Addendum</a> · <a href="/perito/docs/">Documentation</a></footer>
+</main>
+</body>
+</html>

@@ -109,7 +109,12 @@ console.log('copied', ASSETS.join(', '));
 if (fs.existsSync('products')) {
   for (const name of fs.readdirSync('products')) {
     if (!fs.statSync(path.join('products', name)).isDirectory()) continue;
-    fs.cpSync(path.join('products', name), path.join(OUT, name), { recursive: true });
+    // Pages still holding [[...]] placeholders are drafts: not copied, so not deployed or in the sitemap.
+    fs.cpSync(path.join('products', name), path.join(OUT, name), { recursive: true, filter: (src) => {
+      const draft = src.endsWith('.html') && fs.readFileSync(src, 'utf8').includes('[[');
+      if (draft) console.log('skipped draft ' + src);
+      return !draft;
+    } });
     console.log('copied products/' + name + ' -> ' + OUT + '/' + name);
   }
 }
