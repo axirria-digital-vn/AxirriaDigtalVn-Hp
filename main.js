@@ -4,12 +4,6 @@
   var dict = I18N[document.documentElement.lang] || I18N.ja;
   function $(id) { return document.getElementById(id); }
 
-  // Header shadow once the page scrolls
-  var header = document.querySelector('header');
-  var onScroll = function () { header.classList.toggle('scrolled', scrollY > 8); };
-  addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
-
   // Scroll reveal. Siblings in the same parent are staggered.
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   if ('IntersectionObserver' in window && !reduce) {
@@ -40,22 +34,6 @@
       el.textContent = Math.round(to * (1 - Math.pow(1 - p, 3)));
       if (p < 1) requestAnimationFrame(step);
     });
-  }
-
-  // Mobile menu
-  var menuBtn = document.querySelector('.menu-btn');
-  if (menuBtn) {
-    var nav = menuBtn.parentNode;
-    var setOpen = function (open) {
-      nav.classList.toggle('open', open);
-      menuBtn.setAttribute('aria-expanded', open);
-    };
-    menuBtn.addEventListener('click', function () { setOpen(!nav.classList.contains('open')); });
-    nav.querySelectorAll('.menu a').forEach(function (a) { a.addEventListener('click', function () { setOpen(false); }); });
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && nav.classList.contains('open')) { setOpen(false); menuBtn.focus(); }
-    });
-    document.addEventListener('click', function (e) { if (!nav.contains(e.target)) setOpen(false); });
   }
 
   // Munemo demo
