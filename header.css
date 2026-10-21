@@ -6,6 +6,7 @@
   background:var(--yellow);color:var(--indigo);position:sticky;top:0;z-index:50;transition:box-shadow .25s;
   font:400 16px/1.8 "BIZ UDPGothic","Bricolage Grotesque",sans-serif;border:0;text-align:left
 }
+.site-hd[hidden]{display:none}
 .site-hd *{box-sizing:border-box;margin:0;padding:0}
 .site-hd.scrolled{box-shadow:0 8px 24px -14px rgba(30,42,90,.55)}
 .site-hd .nav{position:relative;display:flex;align-items:center;gap:32px;height:76px;max-width:1180px;margin:0 auto;padding:0 24px}

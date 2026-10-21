@@ -23,30 +23,36 @@ const langLink = (l, href, current) =>
   `<a href="${href}" hreflang="${l}" lang="${l}" aria-label="${l === 'ja' ? '日本語' : 'English'}"${current ? ' aria-current="true"' : ''}>${l === 'ja' ? '<span class="lf">日本語</span><span class="ls">JP</span>' : 'EN'}</a>`;
 
 // Site header (header.css / header.js), the same on every page. home = link to the top page
-// ('' on the top page itself, so the menu scrolls instead of reloading).
-function siteHeader(lang, home, base, langSwitch) {
+// ('' on the top page itself, so the menu scrolls instead of reloading). Load header.js once per page.
+function siteHeader(lang, home, base, langSwitch, attrs = '') {
   const dict = I18N[lang];
   const menu = ['services', 'products', 'offshore', 'cases', 'company', 'contact']
     .map((k) => `<li><a href="${home}#${k}">${dict['nav.' + k]}</a></li>`).join('');
-  return `<header class="site-hd">
+  return `<header class="site-hd"${attrs}>
   <div class="nav">
     <a class="logo" href="${home || '#top'}" aria-label="Axirria Digital Vietnam"><img class="mark" src="${base}logo-mark.svg" width="44" height="44" alt=""><span class="nm"><span class="wm" aria-hidden="true">ax<i>ı<b class="h"></b></i>rr<i>ı<b class="f"></b></i>a</span><span class="r">digital vietnam</span></span></a>
-    <ul class="menu" id="siteMenu">${menu}</ul>
+    <ul class="menu" id="siteMenu-${lang}">${menu}</ul>
     <nav class="lang" aria-label="Language">${langSwitch}</nav>
-    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="siteMenu" aria-label="${esc(dict['nav.menu'])}"><span></span></button>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="siteMenu-${lang}" aria-label="${esc(dict['nav.menu'])}"><span></span></button>
   </div>
-</header>
-<script src="${base}header.js" defer></script>`;
+</header>`;
 }
 
-// Product pages are single-language static files: give them the site header, in the page's language.
+// Product pages are single-language static files. They get the site header in every language;
+// the one shown follows the language the visitor picked (localStorage 'lang', set by header.js),
+// and their language switch changes only the header, so the visitor stays on the product page.
 const FONTS = '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&display=swap">';
 function addSiteHeader(file) {
   let html = fs.readFileSync(file, 'utf8');
   const lang = /<html[^>]*\slang="ja"/.test(html) ? 'ja' : 'en';
-  const langSwitch = Object.keys(LANGS).map((l) => langLink(l, '/' + LANGS[l].dir, l === lang)).join('');
+  const headers = Object.keys(LANGS).map((h) => {
+    const langSwitch = Object.keys(LANGS).map((l) => langLink(l, '/' + LANGS[l].dir, l === h).replace('<a ', `<a data-lang="${l}" `)).join('');
+    return siteHeader(h, '/' + LANGS[h].dir, '/', langSwitch, ` data-lang="${h}"${h === lang ? '' : ' hidden'}`);
+  }).join('\n');
+  // Runs before first paint, so the right header shows without a flash.
+  const pick = `<script>try{var l=localStorage.getItem('lang');if(document.querySelector('.site-hd[data-lang="'+l+'"]'))document.querySelectorAll('.site-hd[data-lang]').forEach(function(h){h.hidden=h.dataset.lang!==l})}catch(e){}</script>`;
   html = html.replace('</head>', `${FONTS}\n<link rel="stylesheet" href="/header.css">\n</head>`)
-    .replace(/<body[^>]*>/, (m) => m + '\n' + siteHeader(lang, '/' + LANGS[lang].dir, '/', langSwitch));
+    .replace(/<body[^>]*>/, (m) => `${m}\n${headers}\n${pick}\n<script src="/header.js" defer></script>`);
   fs.writeFileSync(file, html);
 }
 
@@ -79,7 +85,7 @@ function render(page, lang) {
   ].join('\n');
 
   const langSwitch = Object.keys(LANGS).map((l) => langLink(l, rel(LANGS[l].dir + page.dir), l === lang)).join('');
-  const header = siteHeader(lang, page.dir ? rel(LANGS[lang].dir) : '', base, langSwitch);
+  const header = siteHeader(lang, page.dir ? rel(LANGS[lang].dir) : '', base, langSwitch) + `\n<script src="${base}header.js" defer></script>`;
 
   // Smallest-team size from site.config.json `plan` (no prices are published on the site).
   // Cloudflare Turnstile widget, only when a site key is configured.
