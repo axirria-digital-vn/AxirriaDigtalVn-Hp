@@ -16,6 +16,15 @@
       "group": "own",
       "href": { "ja": "/tsunagu/", "en": "/tsunagu/" },
       "tagline": { "ja": "名刺の読み取り、インボイス登録番号の確認、入金消込、表記ゆれの整形を Google スプレッドシートで。", "en": "Business card scanning, invoice number checks, payment matching and data cleanup in Google Sheets (page in Japanese)." }
+    },
+    {
+      "id": "perito",
+      "name": "Perito for Jira",
+      "icon": null,
+      "group": "own",
+      "status": { "ja": "開発中", "en": "In development" },
+      "href": { "ja": "/perito/", "en": "/perito/" },
+      "tagline": { "ja": "Jira 向けアプリ。Atlassian Marketplace での公開に向けて開発中です。", "en": "An app for Jira, in development for release on the Atlassian Marketplace." }
     }
   ]
 }
