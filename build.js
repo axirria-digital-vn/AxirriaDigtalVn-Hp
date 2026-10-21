@@ -49,6 +49,15 @@ function addSiteHeader(file) {
   fs.writeFileSync(file, html);
 }
 
+// Stand-in for a draft product page: same head and title, body text replaced by a "coming soon" note.
+function comingSoon(html) {
+  const ja = /<html[^>]*\slang="ja"/.test(html);
+  const note = ja ? 'このページは準備中です。公開まで今しばらくお待ちください。' : 'This page is being prepared and will be published soon.';
+  return html.replace('</head>', '<meta name="robots" content="noindex">\n</head>')
+    .replace(/(<\/h1>)[\s\S]*?(?=<nav class="pp-links"|<\/article>|<\/main>)/, `$1\n<p class="pp-meta">${note}</p>\n`)
+    .replace(/\[\[[^\]]*\]\]/g, '');
+}
+
 function render(page, lang) {
   const dict = I18N[lang];
   // Every page is a directory index (clean URLs like /en/privacy/), so links are dir-relative.
@@ -138,10 +147,16 @@ console.log('copied', ASSETS.join(', '));
 if (fs.existsSync('products')) {
   for (const name of fs.readdirSync('products')) {
     if (!fs.statSync(path.join('products', name)).isDirectory()) continue;
-    // Pages still holding [[...]] placeholders are drafts: not copied, so not deployed or in the sitemap.
+    // Pages still holding [[...]] placeholders are drafts: their content is not deployed.
+    // A "coming soon" page (noindex, not in the sitemap) takes their place so links keep working.
     fs.cpSync(path.join('products', name), path.join(OUT, name), { recursive: true, filter: (src) => {
       const draft = src.endsWith('.html') && fs.readFileSync(src, 'utf8').includes('[[');
-      if (draft) console.log('skipped draft ' + src);
+      if (draft) {
+        const out = path.join(OUT, path.relative('products', src));
+        fs.mkdirSync(path.dirname(out), { recursive: true });
+        fs.writeFileSync(out, comingSoon(fs.readFileSync(src, 'utf8')));
+        console.log('draft, coming soon page: ' + src);
+      }
       return !draft;
     } });
     const htmlFiles = (dir) => fs.readdirSync(dir, { withFileTypes: true }).flatMap((e) =>
@@ -150,9 +165,10 @@ if (fs.existsSync('products')) {
     console.log('copied products/' + name + ' -> ' + OUT + '/' + name);
   }
 }
-// sitemap.xml: every dist/**/index.html (pages and product pages), written last so nothing is missed.
+// sitemap.xml: every dist/**/index.html except noindex ones (pages and product pages), written last so nothing is missed.
 const pageDirs = (dir) => fs.readdirSync(dir, { withFileTypes: true }).flatMap((e) =>
-  e.isDirectory() ? pageDirs(path.join(dir, e.name)) : e.name === 'index.html' ? [path.relative(OUT, dir)] : []);
+  e.isDirectory() ? pageDirs(path.join(dir, e.name))
+    : e.name === 'index.html' && !fs.readFileSync(path.join(dir, e.name), 'utf8').includes('name="robots" content="noindex"') ? [path.relative(OUT, dir)] : []);
 const urls = pageDirs(OUT).sort().map((d) => cfg.siteUrl + (d ? d.split(path.sep).join('/') + '/' : ''));
 fs.writeFileSync(path.join(OUT, 'sitemap.xml'), '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
   + urls.map((u) => `<url><loc>${esc(u)}</loc></url>`).join('\n') + '\n</urlset>\n');
