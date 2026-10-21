@@ -19,6 +19,37 @@ for (const p of PRODUCTS) if (!GROUPS.includes(p.group)) throw new Error(`produc
 
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
+const langLink = (l, href, current) =>
+  `<a href="${href}" hreflang="${l}" lang="${l}" aria-label="${l === 'ja' ? '日本語' : 'English'}"${current ? ' aria-current="true"' : ''}>${l === 'ja' ? '<span class="lf">日本語</span><span class="ls">JP</span>' : 'EN'}</a>`;
+
+// Site header (header.css / header.js), the same on every page. home = link to the top page
+// ('' on the top page itself, so the menu scrolls instead of reloading).
+function siteHeader(lang, home, base, langSwitch) {
+  const dict = I18N[lang];
+  const menu = ['services', 'products', 'offshore', 'cases', 'company', 'contact']
+    .map((k) => `<li><a href="${home}#${k}">${dict['nav.' + k]}</a></li>`).join('');
+  return `<header class="site-hd">
+  <div class="nav">
+    <a class="logo" href="${home || '#top'}" aria-label="Axirria Digital Vietnam"><img class="mark" src="${base}logo-mark.svg" width="44" height="44" alt=""><span class="nm"><span class="wm" aria-hidden="true">ax<i>ı<b class="h"></b></i>rr<i>ı<b class="f"></b></i>a</span><span class="r">digital vietnam</span></span></a>
+    <ul class="menu" id="siteMenu">${menu}</ul>
+    <nav class="lang" aria-label="Language">${langSwitch}</nav>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="siteMenu" aria-label="${esc(dict['nav.menu'])}"><span></span></button>
+  </div>
+</header>
+<script src="${base}header.js" defer></script>`;
+}
+
+// Product pages are single-language static files: give them the site header, in the page's language.
+const FONTS = '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&display=swap">';
+function addSiteHeader(file) {
+  let html = fs.readFileSync(file, 'utf8');
+  const lang = /<html[^>]*\slang="ja"/.test(html) ? 'ja' : 'en';
+  const langSwitch = Object.keys(LANGS).map((l) => langLink(l, '/' + LANGS[l].dir, l === lang)).join('');
+  html = html.replace('</head>', `${FONTS}\n<link rel="stylesheet" href="/header.css">\n</head>`)
+    .replace(/<body[^>]*>/, (m) => m + '\n' + siteHeader(lang, '/' + LANGS[lang].dir, '/', langSwitch));
+  fs.writeFileSync(file, html);
+}
+
 function render(page, lang) {
   const dict = I18N[lang];
   // Every page is a directory index (clean URLs like /en/privacy/), so links are dir-relative.
@@ -36,6 +67,7 @@ function render(page, lang) {
     `<link rel="alternate" hreflang="en" href="${url('en')}">`,
     `<link rel="alternate" hreflang="x-default" href="${url('ja')}">`,
     `<link rel="icon" href="${base}logo-mark.svg" type="image/svg+xml">`,
+    `<link rel="stylesheet" href="${base}header.css">`,
     `<meta property="og:type" content="website">`,
     `<meta property="og:site_name" content="Axirria Digital Vietnam">`,
     `<meta property="og:title" content="${esc(title)}">`,
@@ -46,9 +78,8 @@ function render(page, lang) {
     `<meta name="twitter:card" content="summary_large_image">`,
   ].join('\n');
 
-  const langSwitch = Object.keys(LANGS).map((l) =>
-    `<a href="${rel(LANGS[l].dir + page.dir)}" hreflang="${l}" lang="${l}" aria-label="${l === 'ja' ? '日本語' : 'English'}"${l === lang ? ' aria-current="true"' : ''}>${l === 'ja' ? '<span class="lf">日本語</span><span class="ls">JP</span>' : 'EN'}</a>`
-  ).join('');
+  const langSwitch = Object.keys(LANGS).map((l) => langLink(l, rel(LANGS[l].dir + page.dir), l === lang)).join('');
+  const header = siteHeader(lang, page.dir ? rel(LANGS[lang].dir) : '', base, langSwitch);
 
   // Smallest-team size from site.config.json `plan` (no prices are published on the site).
   // Cloudflare Turnstile widget, only when a site key is configured.
@@ -69,7 +100,7 @@ function render(page, lang) {
     return `<div class="prod-group"><${gh} class="prod-gt">${dict['pr.g.' + g]}</${gh}><p class="prod-gn">${dict['pr.g.' + g + 'Note']}</p><div class="prod-grid">${items.map(card).join('')}</div></div>`;
   }).join('');
   const productLinks = PRODUCTS.map((p) => `<a href="${esc(p.href[lang])}">${esc(p.name)}</a>`).join('');
-  const vars = { lang, base, head, langSwitch, productCards, productLinks, productsHref: rel(LANGS[lang].dir + 'products/'), turnstile, 'plan.hours': cfg.plan.devHoursPerMonth, homeHref: rel(LANGS[lang].dir), privacyHref: rel(LANGS[lang].dir + 'privacy/') };
+  const vars = { lang, base, head, header, langSwitch, productCards, productLinks, productsHref: rel(LANGS[lang].dir + 'products/'), turnstile, 'plan.hours': cfg.plan.devHoursPerMonth, homeHref: rel(LANGS[lang].dir), privacyHref: rel(LANGS[lang].dir + 'privacy/') };
   for (const [k, v] of Object.entries(cfg)) if (typeof v !== 'object') vars['cfg.' + k] = v;
 
   let html = fs.readFileSync(page.src, 'utf8');
@@ -92,7 +123,7 @@ function render(page, lang) {
 
 // Everything the site serves goes to dist/ (the deploy folder); sources stay out of it.
 const OUT = 'dist';
-const ASSETS = ['style.css', 'main.js', 'i18n.js', 'logo-mark.svg', 'og.png'];
+const ASSETS = ['style.css', 'header.css', 'header.js', 'main.js', 'i18n.js', 'logo-mark.svg', 'og.png'];
 fs.rmSync(OUT, { recursive: true, force: true });
 for (const page of PAGES) {
   for (const lang of Object.keys(LANGS)) {
@@ -115,6 +146,9 @@ if (fs.existsSync('products')) {
       if (draft) console.log('skipped draft ' + src);
       return !draft;
     } });
+    const htmlFiles = (dir) => fs.readdirSync(dir, { withFileTypes: true }).flatMap((e) =>
+      e.isDirectory() ? htmlFiles(path.join(dir, e.name)) : e.name.endsWith('.html') ? [path.join(dir, e.name)] : []);
+    htmlFiles(path.join(OUT, name)).forEach(addSiteHeader);
     console.log('copied products/' + name + ' -> ' + OUT + '/' + name);
   }
 }
