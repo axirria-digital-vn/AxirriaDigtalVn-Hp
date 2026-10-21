@@ -264,6 +264,21 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-
 .pp ul{padding-left:1.4em}
 .pp p,.pp li{color:var(--indigo)}
 .pp .pp-date{margin:40px 0 24px;color:var(--indigo-2)}
+/* product pages in the same layout (products/perito/): support, docs, legal text */
+.pp h1 .prod-st{font-size:.8rem;margin-top:12px}
+.pp .pp-meta{color:var(--indigo-2);margin:-20px 0 28px}
+.pp :is(p,ul,ol,dl,table)+:is(p,ul,ol,dl,table){margin-top:12px}
+.pp ol{padding-left:1.4em}
+.pp li+li{margin-top:4px}
+.pp dl{display:grid;grid-template-columns:max-content 1fr;gap:6px 20px}
+.pp dt{font-weight:700}
+.pp table{border-collapse:collapse;width:100%}
+.pp th,.pp td{border:1px solid var(--line);padding:8px 12px;text-align:left;vertical-align:top}
+.pp th{background:var(--paper)}
+body:has(.pp){display:flex;flex-direction:column;min-height:100vh}
+body:has(.pp) main{flex:1}
+.pp-links{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);color:var(--indigo-2);font-size:.88rem}
+@media (max-width:520px){.pp dl{grid-template-columns:1fr;gap:0}.pp dd+dt{margin-top:10px}}
 
 /* scroll reveal (only when JS is on; see main.js) */
 .js [data-reveal]{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0ms)}
