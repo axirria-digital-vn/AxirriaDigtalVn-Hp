@@ -94,6 +94,9 @@ export default {
       if (request.method !== 'POST') return json(405, { ok: false, error: 'method not allowed' });
       return handleContact(request, env);
     }
+    // The products page was folded into the home page section.
+    const old = pathname.match(/^(\/en)?\/products\/?$/);
+    if (old) return Response.redirect(new URL((old[1] || '') + '/#products', request.url), 301);
     return env.ASSETS.fetch(request);
   },
 };

@@ -355,13 +355,12 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-
   .chat-input .field{max-height:200px;overflow:auto}
 }
 
-/* products: home section, /products/ page, footer links */
+/* products: home section, footer links */
 .prods{margin-top:72px}
 .prods .textlink{display:inline-block;margin-top:24px}
 .prods h3{font-size:1.4rem}
 .prod-group{margin-top:32px}
 .prod-gt{font-size:1.1rem}
-h2.prod-gt{font-size:1.3rem;margin:0}
 .prod-gn{color:var(--indigo-2);font-size:.92rem;margin:6px 0 0}
 .prod-gn a{color:inherit}
 .mu-by{display:inline-block;margin-top:16px;padding:6px 12px;border-left:4px solid var(--yellow);background:var(--yellow-soft);font-size:.9rem}

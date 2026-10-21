@@ -1,5 +1,5 @@
 {
-  "_comment": "Product list for the home page section, /products/ and the footer. Add a product = add an entry here with group \"partner\" (co-developed) or \"own\" (and its pages under products/<id>/ if hosted on this site).",
+  "_comment": "Product list for the home page section and the footer. Add a product = add an entry here with group \"partner\" (co-developed) or \"own\" (and its pages under products/<id>/ if hosted on this site).",
   "products": [
     {
       "id": "munemo",
