@@ -275,6 +275,7 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-
 .pp table{border-collapse:collapse;width:100%}
 .pp th,.pp td{border:1px solid var(--line);padding:8px 12px;text-align:left;vertical-align:top}
 .pp th{background:var(--paper)}
+.pp code{font-family:inherit;white-space:nowrap}
 body:has(.pp){display:flex;flex-direction:column;min-height:100vh}
 body:has(.pp) main{flex:1}
 .pp-links{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);color:var(--indigo-2);font-size:.88rem}

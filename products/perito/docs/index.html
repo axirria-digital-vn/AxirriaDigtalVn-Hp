@@ -12,65 +12,45 @@
 <main class="block">
   <article class="wrap pp">
 <h1>Perito for Jira – Documentation</h1>
-<p class="pp-meta">Last updated: [[ngày đưa lên web]]</p>
-<p>Perito writes test cases for a Jira issue using the issues around it as context. It asks your team about unclear requirements before guessing, suggests tests for areas a change may affect, and warns you about tests you may already have.</p>
+<p class="pp-meta">Last updated: 22 October 2026</p>
+<p>Perito writes test cases for a Jira issue using the issues linked to it and the tests you already have as context.</p>
 <h2>1. Install</h2>
 <ol>
 <li>Open Perito for Jira on the Atlassian Marketplace and select "Get it now".</li>
 <li>Choose your Jira Cloud site. A site admin approves the permissions listed below.</li>
-<li>Open any Jira issue. The Perito panel appears on the issue [[đúng vị trí/tên panel trong UI]].</li>
 </ol>
 <p>Perito is free for teams of up to 10 users.</p>
 <h2>2. Permissions</h2>
 <table>
 <thead><tr><th>Permission</th><th>Why Perito needs it</th></tr></thead>
-<tbody><tr><td colspan="2">[[mỗi scope trong manifest.yml một dòng + lý do – Duy cung cấp]]</td></tr></tbody>
+<tbody>
+<tr><td><code>read:jira-work</code></td><td>Read the issue you run Perito on, its linked issues and its existing test cases</td></tr>
+<tr><td><code>write:jira-work</code></td><td>Save test cases to Jira as sub-tasks</td></tr>
+<tr><td><code>read:jira-user</code></td><td>Identify the users who run Perito</td></tr>
+<tr><td><code>storage:app</code></td><td>Store test cases, run results and test-writing guidelines in Forge storage</td></tr>
+</tbody>
 </table>
-<p>Perito sends issue text to OpenRouter (openrouter.ai) to generate test cases. No other external hosts are contacted [[Duy xác nhận danh sách egress]].</p>
+<p>Perito sends issue text to one external host: OpenAI's API (api.openai.com), to generate test cases.</p>
 <h2>3. Generate test cases</h2>
 <ol>
-<li>Open a Jira issue and select [[tên nút, ví dụ "Generate tests"]] in the Perito panel.</li>
-<li>Perito collects context: linked issues, issues in the same epic or parent, and issues that share business keywords, including bugs.</li>
-<li>Perito writes [[6–10]] test cases. Each test case has steps, test data and an expected result.</li>
-<li>Review each test case: keep it, edit it or drop it. When you drop a test, you can give a short reason.</li>
+<li>Open a Jira issue and start Perito.</li>
+<li>Perito collects context: the issue, up to 10 directly linked issues, and the issue's existing test cases.</li>
+<li>Perito writes test cases. Every step has a concrete expected result, using the values written in the issue.</li>
+<li>New test cases are checked against existing tests to avoid duplicates.</li>
+<li>Test cases are saved to Jira as sub-tasks of the issue, and run results are recorded in Perito.</li>
 </ol>
-<h2>4. Clarifying questions</h2>
-<p>If a requirement is unclear, Perito posts one comment on the issue titled "[Perito] Questions before writing tests", with numbered questions (Q1, Q2…).</p>
+<h2>4. Test-writing guidelines</h2>
+<p>For each space, Perito keeps guidelines that help it write tests the way your team does. Open the "Test-writing guidelines" tab of the space to view, approve or turn off each guideline. Guidelines are used only for your own site and are never shared with other customers. To delete guidelines permanently, email <a href="mailto:contact@axirriadigital.com">contact@axirriadigital.com</a>.</p>
+<h2>5. Data and privacy</h2>
 <ul>
-<li>Answer in a normal Jira comment, for example "Q1: Not applied to sale items." Your BA does not need to open Perito.</li>
-<li>Test cases that depend on an unanswered question stay in Draft and show "Waiting for answer: Q2".</li>
-<li>When an answer arrives, Perito rewrites the related draft tests. If the trigger misses an answer, select [[tên nút "Read answers again"]].</li>
-<li>To use draft tests without waiting, select [[tên nút "Use now"]]. These tests keep the label "not clarified".</li>
-<li>If an answer differs from the issue description, Perito follows the answer and shows a warning so the issue can be updated.</li>
-</ul>
-<h2>5. Impact tests</h2>
-<p>Besides tests for the issue itself, Perito suggests 1–3 tests for each area the change may affect (up to 5 areas). Each impact test shows where it came from:</p>
-<ul>
-<li>🔗 a linked issue (including bugs; for a bug, the test repeats the steps that caused it under the new conditions)</li>
-<li>📝 the "Affected areas" section of the issue</li>
-<li>💬 your team's answer to the affected-areas question</li>
-<li>🤖 an AI suggestion, used only when the sources above give nothing. These tests show the quoted text from both issues and should be checked before use.</li>
-</ul>
-<p>Tip: add an "Affected areas" section to your issues. Perito then uses it directly and does not need to ask.</p>
-<h2>6. Possible duplicates</h2>
-<p>Perito compares new test cases with existing tests of the issue and of the related issues it used.</p>
-<ul>
-<li>Possible duplicate: grouped under "Possible duplicates" and dropped by default. Open the group to compare with the existing test and decide.</li>
-<li>Adds to an existing test: shown under "Adds to existing tests", with what is new.</li>
-</ul>
-<p>Perito never changes your existing tests.</p>
-<h2>7. Limits</h2>
-<p>[[giới hạn số lần sinh theo gói, nếu có]]</p>
-<h2>8. Data and privacy</h2>
-<ul>
-<li>Does data leave Atlassian? Yes. Issue text needed for test generation is sent to OpenRouter and an AI model provider with zero data retention.</li>
-<li>Is my data used to train AI models? No.</li>
-<li>Where is data stored? [[Forge Storage / Forge SQL]] within your Atlassian site.</li>
+<li>Does data leave Atlassian? Yes. The text of the issue and its linked issues is sent to OpenAI's API to generate test cases.</li>
+<li>Is my data used to train AI models? No. Perito does not train models, and OpenAI does not use API data to train its models. OpenAI may keep API data in abuse-monitoring logs for up to 30 days.</li>
+<li>Where is data stored? In Atlassian Forge storage for your site. Perito does not use its own servers.</li>
 </ul>
 <p>Details: <a href="/perito/privacy/">Privacy Policy</a> and <a href="/perito/dpa/">Data Processing Addendum</a>.</p>
-<h2>9. Uninstall</h2>
-<p>A site admin can uninstall Perito from Jira settings → Apps → Manage apps. Data stored by Perito is deleted according to Atlassian Forge data deletion rules. Comments and test cases that Perito wrote to Jira stay until you delete them.</p>
-<h2>10. Support</h2>
+<h2>6. Uninstall</h2>
+<p>A site admin can uninstall Perito from Jira settings → Apps → Manage apps. Atlassian deletes the data Perito stored after the retention period set by the Forge platform. Test case sub-tasks that Perito wrote to Jira stay until you delete them.</p>
+<h2>7. Support</h2>
 <p><a href="mailto:contact@axirriadigital.com">contact@axirriadigital.com</a> · <a href="/perito/support/">Support page</a></p>
 <nav class="pp-links" aria-label="Perito for Jira">Perito for Jira · Axirria Digital Vietnam Limited Company · <a href="/perito/support/">Support</a> · <a href="/perito/privacy/">Privacy Policy</a> · <a href="/perito/dpa/">Data Processing Addendum</a> · <a href="/perito/docs/">Documentation</a></nav>
   </article>
