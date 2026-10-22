@@ -12,7 +12,7 @@
 <main class="block">
   <article class="wrap pp">
 <h1>Perito for Jira – Privacy Policy</h1>
-<p class="pp-meta">Last updated: [[ngày đưa lên web, dạng "21 October 2026"]]</p>
+<p class="pp-meta">Last updated: 22 October 2026</p>
 <p>This policy explains how Axirria Digital Vietnam Limited Company ("we", "us") handles data when you use Perito for Jira ("Perito"), an app for Atlassian Jira Cloud.</p>
 <h2>1. Who we are</h2>
 <p>Axirria Digital Vietnam Limited Company is the developer and provider of Perito.<br>
@@ -21,28 +21,33 @@ Contact: <a href="mailto:contact@axirriadigital.com">contact@axirriadigital.com<
 <h2>2. Data Perito accesses</h2>
 <p>To write test cases, Perito reads the following through Atlassian's APIs, only within the permissions you grant at installation:</p>
 <ul>
-<li>Content of the Jira issue you run Perito on: summary, description, acceptance criteria, comments, status and issue type</li>
-<li>Related issues used as context: linked issues, issues in the same epic or parent, and issues found by keyword search in the same site, including bugs</li>
-<li>Fields used to find related issues: links, epic or parent, components, labels and fix versions</li>
-<li>Existing test cases, so that Perito can avoid writing duplicates</li>
-<li>Atlassian account IDs of users who run Perito, to record who generated or reviewed a test case</li>
+<li>Content of the Jira issue you run Perito on, such as its summary, description and acceptance criteria</li>
+<li>Up to 10 issues directly linked to that issue, used as context</li>
+<li>Existing test cases of the issue, so that Perito can avoid writing duplicates</li>
+<li>Atlassian account IDs of users who run Perito</li>
 </ul>
 <p>Perito does not ask for or store your Atlassian password or API tokens.</p>
 <h2>3. Data Perito writes to your Jira site</h2>
-<ul>
-<li>When a requirement is unclear, Perito posts a comment on the issue that starts with "[Perito]" and lists numbered questions for your team.</li>
-<li>[[Nơi Perito lưu test case trong Jira, ví dụ: "Test cases you approve are saved as sub-tasks of the issue." – Duy xác nhận]]</li>
-</ul>
+<p>Test cases are saved as sub-tasks of the issue.</p>
 <h2>4. How data is processed</h2>
-<p>Perito runs on Atlassian Forge. To write test cases, the relevant issue text is sent over an encrypted connection to OpenRouter, Inc. (<a href="https://openrouter.ai/privacy">https://openrouter.ai/privacy</a>), which routes the request to an AI model provider. We configure OpenRouter so that requests are sent only to providers with a zero data retention policy: your content is not stored by the model provider and is not used to train AI models. We do not enable prompt logging at OpenRouter.</p>
-<h2>5. Data Perito stores</h2>
+<p>Perito runs on Atlassian Forge. To write test cases, the text of the issue and its linked issues is sent over an encrypted connection to OpenAI's API (api.openai.com).</p>
 <ul>
-<li>Generated test cases and review results (kept, edited or dropped, and the reason given), stored in [[Forge Storage / Forge SQL – Duy xác nhận]] within your Atlassian site.</li>
-<li>Project memory: notes and past answers that help Perito understand your project's business rules. You decide what Perito remembers, and you can view and delete memory at any time [[cách xem/xóa memory trong app]]. Memory is stored in [[nơi lưu memory – Duy xác nhận]] and is used only for your own site. It is never shared with other customers and is not used to train AI models.</li>
+<li>Under OpenAI's API data policy, data sent through the API is not used to train OpenAI's models.</li>
+<li>OpenAI may keep API data in abuse-monitoring logs for up to 30 days, unless longer retention is required by law.</li>
+<li>Perito keeps a temporary copy of the text sent for processing only until the request is complete, and for no longer than 1 day.</li>
+<li>Perito does not write issue content or prompts to its logs.</li>
+</ul>
+<h2>5. Data Perito stores</h2>
+<p>Perito stores data only in Atlassian Forge storage (Forge SQL and Forge key-value storage) for your site. It does not use its own servers.</p>
+<ul>
+<li>Test cases, run results, points that need clarification and the conclusions reached</li>
+<li>Usage status of AI requests</li>
+<li>Test-writing guidelines: for each space, Perito keeps guidelines that help it write tests that match your team's rules. Your team can view, approve or turn off these guidelines in the "Test-writing guidelines" tab of the space. Guidelines are used only for your own site, are never shared with other customers, and are not used to train AI models.</li>
 </ul>
 <p>We do not sell your data and do not use it for advertising.</p>
 <h2>6. Retention and deletion</h2>
-<p>Data is kept while Perito is installed. When you uninstall Perito, data stored by Perito is deleted according to Atlassian Forge data deletion rules. Comments and [[test case sub-tasks]] that Perito wrote to your Jira site remain in Jira until you delete them. You can ask us to delete data at any time by emailing <a href="mailto:contact@axirriadigital.com">contact@axirriadigital.com</a>. We respond within 2 business days.</p>
+<p>Data is kept while Perito is installed. When you uninstall Perito, Atlassian deletes the data Perito stored after the retention period set by the Forge platform. Test case sub-tasks that Perito wrote to your Jira site remain in Jira until you delete them.</p>
+<p>You can ask us to delete data, including test-writing guidelines, at any time by emailing <a href="mailto:contact@axirriadigital.com">contact@axirriadigital.com</a>. We respond within 2 business days.</p>
 <h2>7. Personal data</h2>
 <p>Perito supports Atlassian's personal data reporting process for Forge apps. When a user closes their Atlassian account, we remove personal data linked to that account.</p>
 <h2>8. Security</h2>
