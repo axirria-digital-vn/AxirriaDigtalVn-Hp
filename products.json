@@ -23,7 +23,7 @@
       "icon": null,
       "group": "own",
       "status": { "ja": "開発中", "en": "In development" },
-      "href": { "ja": "/perito/", "en": "/perito/" },
+      "href": { "ja": "/perito/ja/", "en": "/perito/" },
       "tagline": { "ja": "Jira の課題に、リンクされた課題と既存のテストを文脈として、テストケースを作成します。", "en": "Writes test cases for a Jira issue using the issues linked to it and the tests you already have as context." }
     }
   ]

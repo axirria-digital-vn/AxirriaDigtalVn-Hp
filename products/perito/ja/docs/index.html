@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Perito for Jira – ドキュメント</title>
+<meta name="description" content="Perito for Jira のインストール方法と使い方。">
+<link rel="canonical" href="https://axirriadigital.com/perito/ja/docs/">
+<link rel="alternate" hreflang="en" href="https://axirriadigital.com/perito/docs/">
+<link rel="alternate" hreflang="ja" href="https://axirriadigital.com/perito/ja/docs/">
+<link rel="icon" href="/logo-mark.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<main class="block">
+  <article class="wrap pp">
+<h1>Perito for Jira – ドキュメント</h1>
+<p class="pp-meta">最終更新日：2026年10月22日</p>
+<p>Perito は、Jira の課題に対して、リンクされた課題と既存のテストを文脈として、テストケースを作成します。</p>
+<h2>1. インストール</h2>
+<ol>
+<li>Atlassian Marketplace で Perito for Jira を開き、「Get it now」を選択します。</li>
+<li>Jira Cloud サイトを選択します。下記の権限は、サイト管理者が承認します。</li>
+</ol>
+<p>10ユーザーまでのチームは無料でご利用いただけます。</p>
+<h2>2. 権限</h2>
+<table>
+<thead><tr><th>権限</th><th>Perito が必要とする理由</th></tr></thead>
+<tbody>
+<tr><td><code>read:jira-work</code></td><td>Perito を実行した課題、そのリンク先の課題、既存のテストケースを読み取るため</td></tr>
+<tr><td><code>write:jira-work</code></td><td>テストケースを Jira にサブタスクとして保存するため</td></tr>
+<tr><td><code>read:jira-user</code></td><td>Perito を実行したユーザーを識別するため</td></tr>
+<tr><td><code>storage:app</code></td><td>テストケース、実行結果、テスト作成ガイドラインを Forge ストレージに保存するため</td></tr>
+</tbody>
+</table>
+<p>Perito が課題のテキストを送信する外部ホストは、OpenAI の API（api.openai.com）の1つだけです。テストケースの作成に使用します。</p>
+<h2>3. テストケースの作成</h2>
+<ol>
+<li>Jira の課題を開き、Perito を起動します。</li>
+<li>Perito が文脈を収集します。対象は、課題本体、直接リンクされた課題（最大10件）、課題の既存のテストケースです。</li>
+<li>Perito がテストケースを作成します。各ステップには、課題に書かれた値を使った具体的な期待結果が含まれます。</li>
+<li>新しいテストケースは、重複を避けるため、既存のテストと照合されます。</li>
+<li>テストケースは課題のサブタスクとして Jira に保存され、実行結果は Perito に記録されます。</li>
+</ol>
+<h2>4. テスト作成ガイドライン</h2>
+<p>Perito はスペースごとに、チームのやり方に合わせてテストを作成するためのガイドラインを保持します。スペースの「テスト作成ガイドライン」タブを開くと、各ガイドラインを確認、承認、または無効化できます。ガイドラインはお客様のサイトでのみ使用され、他のお客様と共有されることはありません。ガイドラインを完全に削除するには、<a href="mailto:contact@axirriadigital.com">contact@axirriadigital.com</a> までメールでご連絡ください。</p>
+<h2>5. データとプライバシー</h2>
+<ul>
+<li>データは Atlassian の外に送信されますか？　はい。テストケースを作成するため、課題とそのリンク先の課題のテキストを OpenAI の API に送信します。</li>
+<li>データは AI モデルの学習に使われますか？　いいえ。Perito はモデルの学習を行わず、OpenAI も API データをモデルの学習に使用しません。OpenAI は API データを不正利用監視のログに最長30日間保管することがあります。</li>
+<li>データはどこに保存されますか？　お客様のサイト用の Atlassian Forge ストレージに保存されます。Perito は独自のサーバーを使用しません。</li>
+</ul>
+<p>詳しくは、<a href="/perito/ja/privacy/">プライバシーポリシー</a>および<a href="/perito/ja/dpa/">データ処理補遺</a>をご覧ください。</p>
+<h2>6. アンインストール</h2>
+<p>サイト管理者は、Jira の設定 → アプリ → アプリを管理 から Perito をアンインストールできます。Forge プラットフォームが定める保管期間の経過後に、Perito が保存したデータは Atlassian によって削除されます。Perito が Jira に作成したテストケースのサブタスクは、お客様が削除するまで残ります。</p>
+<h2>7. サポート</h2>
+<p><a href="mailto:contact@axirriadigital.com">contact@axirriadigital.com</a> · <a href="/perito/ja/support/">サポートページ</a></p>
+<nav class="pp-links" aria-label="Perito for Jira">Perito for Jira · AXIRRIA DIGITAL VIETNAM LIMITED COMPANY · <a href="/perito/ja/support/">サポート</a> · <a href="/perito/ja/privacy/">プライバシーポリシー</a> · <a href="/perito/ja/dpa/">データ処理補遺</a> · <a href="/perito/ja/docs/">ドキュメント</a></nav>
+  </article>
+</main>
+<footer>
+  <div class="wrap">
+    <span class="ft-logo" aria-label="Axirria Digital Vietnam"><img class="mark" src="/logo-mark.svg" width="44" height="44" alt=""><span class="nm"><span class="wm" aria-hidden="true">ax<i>ı<b class="h"></b></i>rr<i>ı<b class="f"></b></i>a</span><span class="r">digital vietnam</span></span></span>
+    <span>© 2026 AXIRRIA DIGITAL VIETNAM LIMITED COMPANY</span>
+  </div>
+</footer>
+</body>
+</html>

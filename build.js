@@ -37,13 +37,23 @@ function siteHeader(lang, home, base, langSwitch, attrs = '') {
 </header>`;
 }
 
-// Product pages are single-language static files. They get the site header in every language;
-// the one shown follows the language the visitor picked (localStorage 'lang', set by header.js),
-// and their language switch changes only the header, so the visitor stays on the product page.
+// Product pages with a version in every language (<link rel="alternate" hreflang> for each, e.g. Perito)
+// get one header in the page's language whose switch opens the other version.
+// Single-language product pages (Tsunagu) get the site header in every language; the one shown follows
+// the language the visitor picked (localStorage 'lang', set by header.js), and their language switch
+// changes only the header, so the visitor stays on the product page.
 const FONTS = '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&display=swap">';
 function addSiteHeader(file) {
   let html = fs.readFileSync(file, 'utf8');
   const lang = /<html[^>]*\slang="ja"/.test(html) ? 'ja' : 'en';
+  const alt = {};
+  for (const m of html.matchAll(/<link rel="alternate" hreflang="(\w+)" href="([^"]+)">/g)) alt[m[1]] = new URL(m[2]).pathname;
+  if (Object.keys(LANGS).every((l) => alt[l])) {
+    const langSwitch = Object.keys(LANGS).map((l) => langLink(l, alt[l], l === lang)).join('');
+    html = html.replace('</head>', `${FONTS}\n<link rel="stylesheet" href="/header.css">\n</head>`)
+      .replace(/<body[^>]*>/, (m) => `${m}\n${siteHeader(lang, '/' + LANGS[lang].dir, '/', langSwitch)}\n<script src="/header.js" defer></script>`);
+    return fs.writeFileSync(file, html);
+  }
   const headers = Object.keys(LANGS).map((h) => {
     const langSwitch = Object.keys(LANGS).map((l) => langLink(l, '/' + LANGS[l].dir, l === h).replace('<a ', `<a data-lang="${l}" `)).join('');
     return siteHeader(h, '/' + LANGS[h].dir, '/', langSwitch, ` data-lang="${h}"${h === lang ? '' : ' hidden'}`);

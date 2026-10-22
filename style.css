@@ -273,7 +273,7 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-
 .pp dl{display:grid;grid-template-columns:max-content 1fr;gap:6px 20px}
 .pp dt{font-weight:700}
 .pp table{border-collapse:collapse;width:100%}
-.pp th,.pp td{border:1px solid var(--line);padding:8px 12px;text-align:left;vertical-align:top}
+.pp th,.pp td{border:1px solid var(--line);padding:8px 12px;text-align:left;vertical-align:top;overflow-wrap:anywhere}
 .pp th{background:var(--paper)}
 .pp code{font-family:inherit;white-space:nowrap}
 body:has(.pp){display:flex;flex-direction:column;min-height:100vh}

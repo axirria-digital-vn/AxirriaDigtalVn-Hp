@@ -25,16 +25,17 @@
     });
   });
 
-  // Company pages: open the other language at the same place instead of at the top.
-  // JA and EN pages share one template, so the n-th section/heading is the same block in both.
+  // Pages with a version in each language: open the other language at the same place, not the top.
+  // Both versions share one template, so the n-th section/heading is the same block in both.
   var KEY = 'langScroll';
   var marks = function () { return document.querySelectorAll('section, h1, h2, h3'); };
   var line = function () { return shown().getBoundingClientRect().bottom; };
-  var bare = function (p) { return p.replace(/^\/en\//, '/'); };
+  // The other-language version of this page, from <link rel="alternate" hreflang="..">.
+  var other = function (l) { var t = document.querySelector('link[rel="alternate"][hreflang="' + l + '"]'); return t && new URL(t.href).pathname; };
   document.querySelectorAll('.site-hd .lang a:not([aria-current]):not([data-lang])').forEach(function (a) {
     a.addEventListener('click', function () {
       var path = new URL(a.href).pathname;
-      if (bare(path) !== bare(location.pathname)) return;
+      if (other(a.hreflang) !== path) return;
       var list = marks(), y = line(), i = -1;
       for (var n = 0; n < list.length; n++) if (list[n].getBoundingClientRect().top <= y + 1) i = n;
       if (i < 0) return;
