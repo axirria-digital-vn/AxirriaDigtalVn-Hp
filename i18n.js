@@ -3,7 +3,7 @@
 var I18N = {
   ja: {
     'meta.title': 'Axirria Digital Vietnam｜AIプロダクト・AI導入支援・オフショア開発',
-    'meta.desc': '1か月かかった機能開発を、数日で。AIを使いこなすエンジニアが機能ごとに時間単位で見積もり、手動テストに加えてAIが24時間テストとコードレビューを行います。要約AI「Munemo」やAI導入支援も提供しています。',
+    'meta.desc': '開発期間を、月単位から日単位へ。AIを熟知したエンジニアが機能ごとに時間単位でお見積りし、手動テストに加えてAIが24時間テストとコードレビューを行います。要約AI「Munemo」やAI導入支援も提供しています。',
     'nav.cases': '導入事例',
     'cs.title': '実績はありますか？',
     'cs.lead': 'お客様の業務がどう変わったかを、具体的な数字でご紹介します。',
@@ -38,8 +38,8 @@ var I18N = {
     'nav.company': '会社概要',
     'nav.contact': 'お問い合わせ',
 
-    'hero.title': '<span>1か月かかった機能を、</span><br><span>数日で。</span>',
-    'hero.lead': 'AIを使いこなすエンジニアが、機能ごとに時間で見積もり、数日で形にします。',
+    'hero.title': '<span>開発期間を、</span><br><span>月単位から日単位へ。</span>',
+    'hero.lead': 'AIを熟知したエンジニアが機能ごとに時間単位でお見積りし、短期間で確実に形にします。',
    
    
     'hero.cta1': '無料で相談する',
@@ -152,7 +152,7 @@ var I18N = {
 
   en: {
     'meta.title': 'Axirria Digital Vietnam | AI products, AI adoption and offshore development',
-    'meta.desc': 'What took a month now ships in days. Engineers who have built with AI for years estimate every feature in hours, and AI runs tests and code reviews around the clock. We also offer Munemo, our summary AI, and AI adoption support.',
+    'meta.desc': 'Development time, from months to days. Engineers who know AI estimate every feature in hours, and AI runs tests and code reviews around the clock. We also offer Munemo, our summary AI, and AI adoption support.',
     'nav.cases': 'Case studies',
     'cs.title': 'Have you done this before?',
     'cs.lead': 'What changed for our clients, in concrete numbers.',
@@ -187,8 +187,8 @@ var I18N = {
     'nav.company': 'Company',
     'nav.contact': 'Contact',
 
-    'hero.title': '<span>What took a month</span><br><span>now ships in days.</span>',
-    'hero.lead': 'AI-fluent engineers quote every feature in hours and ship it in days.',
+    'hero.title': '<span>Development time,</span><br><span>from months to days.</span>',
+    'hero.lead': 'Engineers who know AI estimate every feature in hours and deliver it quickly and reliably.',
    
    
     'hero.cta1': 'Book a free consultation',
