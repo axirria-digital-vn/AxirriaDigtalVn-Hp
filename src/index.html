@@ -15,71 +15,108 @@
 
 <main id="top">
   <section class="hero">
-    <div class="wrap">
-      <div>
-        <h1 data-i18n="hero.title"></h1>
-        <p data-i18n="hero.lead"></p>
-        <div class="cta">
-          <a class="btn" href="#contact" data-i18n="hero.cta1"></a>
-        </div>
+    <div class="container hero-in">
+      <h1 data-i18n="hero.title"></h1>
+      <div class="hero-foot">
+        <p class="lead" data-i18n="hero.lead"></p>
+        <a class="btn" href="#contact" data-i18n="hero.cta1"></a>
+      </div>
+      <figure class="span" aria-labelledby="spanCap">
+        <div class="span-row"><p><span data-i18n="hero.oldL"></span><b data-i18n="hero.oldV"></b></p><i class="bar old" style="--w:100%"></i></div>
+        <div class="span-row"><p><span data-i18n="hero.newL"></span><b data-i18n="hero.newV"></b></p><i class="bar new" style="--w:6.25%"></i></div>
+        <figcaption id="spanCap" data-i18n="hero.cap"></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="estimate" class="sec">
+    <div class="container">
+      <div class="head split">
+        <h2 data-i18n="est.q"></h2>
+        <p class="lead" data-i18n="est.a"></p>
       </div>
       <div class="sheet" role="figure" aria-labelledby="sheetTitle">
-        <h2 id="sheetTitle"><span data-i18n="est.title"></span><small data-i18n="est.team"></small></h2>
-        <table>
-          <thead><tr><th data-i18n="est.task"></th><th data-i18n="est.split"></th><th style="text-align:right" data-i18n="est.hours"></th></tr></thead>
-          <tbody>
-            <!-- bar widths: 10 working days (80h) = 100% -->
-            <tr><td data-i18n="est.r1"></td><td class="bar"><div class="vs"><i class="old" style="width:50%"></i><i class="new" style="width:5%"></i></div></td><td class="h">4.0h</td></tr>
-            <tr><td data-i18n="est.r2"></td><td class="bar"><div class="vs"><i class="old" style="width:40%"></i><i class="new" style="width:3.75%"></i></div></td><td class="h">3.0h</td></tr>
-            <tr><td data-i18n="est.r3"></td><td class="bar"><div class="vs"><i class="old" style="width:100%"></i><i class="new" style="width:6.25%"></i></div></td><td class="h">5.0h</td></tr>
-            <tr><td data-i18n="est.r4"></td><td class="bar"><div class="vs"><i class="old" style="width:50%"></i><i class="new loop" style="width:100%"></i></div></td><td class="h" data-i18n="est.par"></td></tr>
-          </tbody>
-          <tfoot><tr><td colspan="2" data-i18n="est.total"></td><td class="h">12h</td></tr></tfoot>
-        </table>
-        <div class="key"><span class="old" data-i18n="est.dev"></span><span data-i18n="est.ai"></span><span class="par" data-i18n="est.loop"></span><b data-i18n="est.demo"></b></div>
+        <h3 id="sheetTitle"><span data-i18n="est.title"></span> <small data-i18n="est.team"></small></h3>
+        <div class="tbl">
+          <table class="est">
+            <thead><tr><th scope="col" data-i18n="est.task"></th><th scope="col" data-i18n="est.dev"></th><th scope="col" class="r" data-i18n="est.ai"></th></tr></thead>
+            <tbody>
+              <!-- bar widths: 10 working days = 100% -->
+              <tr><th scope="row" data-i18n="est.r1"></th><td><i class="bar old" style="--w:50%"></i><span class="d" data-i18n="est.d1"></span></td><td class="h">4.0h</td></tr>
+              <tr><th scope="row" data-i18n="est.r2"></th><td><i class="bar old" style="--w:40%"></i><span class="d" data-i18n="est.d2"></span></td><td class="h">3.0h</td></tr>
+              <tr><th scope="row" data-i18n="est.r3"></th><td><i class="bar old" style="--w:100%"></i><span class="d" data-i18n="est.d3"></span></td><td class="h">5.0h</td></tr>
+              <tr><th scope="row" data-i18n="est.r4"></th><td><i class="bar old" style="--w:50%"></i><span class="d" data-i18n="est.d4"></span></td><td class="h" data-i18n="est.par"></td></tr>
+            </tbody>
+            <tfoot><tr><th scope="row" data-i18n="est.total"></th><td><span class="d" data-i18n="est.d5"></span></td><td class="h">12h</td></tr></tfoot>
+          </table>
+        </div>
+        <p class="sheet-note" data-i18n="est.demo"></p>
       </div>
     </div>
   </section>
 
-  <section id="services" class="block">
-    <div class="wrap">
-      <h2 data-i18n="svc.title"></h2>
-      <p class="sub" data-i18n="svc.lead"></p>
-      <div class="rows">
+  <section id="offshore" class="sec tint">
+    <div class="container why">
+      <div class="head">
+        <h2 data-i18n="off.title"></h2>
+        <p class="lead" data-i18n="off.lead"></p>
+      </div>
+      <ol class="pillars">
+        <li><h3 data-i18n="off.p1t"></h3><p data-i18n="off.p1d"></p></li>
+        <li><h3 data-i18n="off.p2t"></h3><p data-i18n="off.p2d"></p></li>
+        <li>
+          <h3 data-i18n="off.p3t"></h3><p data-i18n="off.p3d"></p>
+          <div class="day" role="figure" aria-labelledby="dayTitle">
+            <p id="dayTitle" class="day-t" data-i18n="day.title"></p>
+            <div class="lane"><span data-i18n="day.dev"></span><div class="track"><i class="dev" style="--x:37.5%;--w:37.5%"></i></div></div>
+            <div class="lane"><span data-i18n="day.ai"></span><div class="track"><i class="loop" style="--x:0%;--w:100%"></i></div></div>
+            <div class="axis" aria-hidden="true"><span>0:00</span><span>6:00</span><span>12:00</span><span>18:00</span><span>24:00</span></div>
+            <p class="day-n" data-i18n="day.note"></p>
+          </div>
+        </li>
+        <li><h3 data-i18n="off.p4t"></h3><p data-i18n="off.p4d"></p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec band-ink">
+    <div class="container">
+      <div class="head">
+        <h2 data-i18n="cmp.q"></h2>
+      </div>
+      <div class="tbl">
+        <table class="cmp">
+          <thead><tr><th scope="col"></th><th scope="col" data-i18n="cmp.old"></th><th scope="col" data-i18n="cmp.new"></th></tr></thead>
+          <tbody data-i18n="cmp.rows"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section id="services" class="sec">
+    <div class="container">
+      <div class="head split">
+        <h2 data-i18n="svc.title"></h2>
+        <p class="lead" data-i18n="svc.lead"></p>
+      </div>
+      <div class="svc">
         <article><h3 data-i18n="svc1.t"></h3><p data-i18n="svc1.d"></p><ul data-i18n="svc1.l"></ul></article>
         <article><h3 data-i18n="svc2.t"></h3><p data-i18n="svc2.d"></p><ul data-i18n="svc2.l"></ul></article>
         <article><h3 data-i18n="svc3.t"></h3><p data-i18n="svc3.d"></p><ul data-i18n="svc3.l"></ul></article>
       </div>
       <div class="prods" id="products">
         <h3 data-i18n="pr.title"></h3>
-        <p class="sub" data-i18n="pr.lead"></p>
+        <p class="lead" data-i18n="pr.lead"></p>
         {{productCards}}
       </div>
     </div>
   </section>
 
-  <section id="offshore" class="block">
-    <div class="wrap">
-      <h2 data-i18n="off.title"></h2>
-      <p class="sub" data-i18n="off.lead"></p>
-      <ol class="pillars">
-        <li><h3 data-i18n="off.p1t"></h3><p data-i18n="off.p1d"></p></li>
-        <li><h3 data-i18n="off.p2t"></h3><p data-i18n="off.p2d"></p></li>
-        <li><h3 data-i18n="off.p3t"></h3><p data-i18n="off.p3d"></p></li>
-        <li><h3 data-i18n="off.p4t"></h3><p data-i18n="off.p4d"></p></li>
-      </ol>
-      <div class="day" role="figure" aria-labelledby="dayTitle">
-        <h3 id="dayTitle" data-i18n="day.title"></h3>
-        <div class="lane"><span data-i18n="day.dev"></span><div class="track"><i class="dev" style="left:37.5%;width:37.5%"></i></div></div>
-        <div class="lane"><span data-i18n="day.ai"></span><div class="track"><i class="loop" style="left:0;width:100%"></i></div></div>
-        <div class="axis" aria-hidden="true"><span>0:00</span><span>6:00</span><span>12:00</span><span>18:00</span><span>24:00</span></div>
-        <p data-i18n="day.note"></p>
-      </div>
-      <div class="tbl">
-        <table class="cmp">
-          <thead><tr><th></th><th data-i18n="cmp.old"></th><th data-i18n="cmp.new"></th></tr></thead>
-          <tbody data-i18n="cmp.rows"></tbody>
-        </table>
+  <section id="pricing" class="sec band-field">
+    <div class="container start">
+      <div class="head">
+        <h2 data-i18n="start.q"></h2>
+        <p class="lead" data-i18n="plan.title"></p>
       </div>
       <ol class="steps">
         <li><h3 data-i18n="step1.t"></h3><p data-i18n="step1.d"></p></li>
@@ -87,102 +124,114 @@
         <li><h3 data-i18n="step3.t"></h3><p data-i18n="step3.d"></p></li>
         <li><h3 data-i18n="step4.t"></h3><p data-i18n="step4.d"></p></li>
       </ol>
-      <div class="plan" id="pricing">
+      <div class="plan">
         <div>
-          <p class="plan-kicker" data-i18n="plan.kicker"></p>
-          <h3 data-i18n="plan.title"></h3>
           <p class="plan-price" data-i18n="plan.price"></p>
+          <p class="plan-note" data-i18n="plan.note"></p>
+        </div>
+        <div class="plan-act">
+          <a class="btn" href="#contact" data-i18n="plan.cta"></a>
           <p class="plan-mail"><a href="mailto:{{cfg.email}}">{{cfg.email}}</a></p>
         </div>
-        <div>
-          <ul class="plan-parts" data-i18n="plan.parts"></ul>
-          <p class="plan-note" data-i18n="plan.note"></p>
-          <a class="btn" href="#contact" data-i18n="plan.cta"></a>
-        </div>
-      </div>
-      <div class="faq" id="faq">
-        <h3 data-i18n="faq.title"></h3>
-        <div data-i18n="faq.items"></div>
       </div>
     </div>
   </section>
 
-  <section id="cases" class="block tint">
-    <div class="wrap">
-      <h2 data-i18n="cs.title"></h2>
-      <p class="sub" data-i18n="cs.lead"></p>
+  <section id="cases" class="sec">
+    <div class="container">
+      <div class="head split">
+        <h2 data-i18n="cs.title"></h2>
+        <p class="lead" data-i18n="cs.lead"></p>
+      </div>
       <div class="cases">
         <article class="case" data-i18n="cs.1"></article>
         <article class="case" data-i18n="cs.2"></article>
       </div>
-    </div>
-  </section>
-
-  <section class="block partner">
-    <div class="wrap">
-      <div>
-        <h2 data-i18n="pt.title"></h2>
-        <blockquote data-i18n="pt.quote"></blockquote>
-        <p class="sub" data-i18n="pt.lead"></p>
-        <p style="margin-top:24px"><a class="textlink" href="https://www.axirria.co.jp/" target="_blank" rel="noopener" data-i18n="pt.link"></a></p>
+      <div class="partner">
+        <div>
+          <h3 data-i18n="pt.title"></h3>
+          <blockquote data-i18n="pt.quote"></blockquote>
+          <p data-i18n="pt.lead"></p>
+          <p class="pt-link"><a class="textlink" href="https://www.axirria.co.jp/" target="_blank" rel="noopener" data-i18n="pt.link"></a></p>
+        </div>
+        <dl>
+          <dt data-i18n="pt1.t"></dt><dd data-i18n="pt1.d"></dd>
+          <dt data-i18n="pt2.t"></dt><dd data-i18n="pt2.d"></dd>
+          <dt data-i18n="pt3.t"></dt><dd data-i18n="pt3.d"></dd>
+        </dl>
       </div>
-      <dl>
-        <dt data-i18n="pt1.t"></dt><dd data-i18n="pt1.d"></dd>
-        <dt data-i18n="pt2.t"></dt><dd data-i18n="pt2.d"></dd>
-        <dt data-i18n="pt3.t"></dt><dd data-i18n="pt3.d"></dd>
-      </dl>
     </div>
   </section>
 
-  <section id="news" class="block tint">
-    <div class="wrap">
-      <h2 data-i18n="nw.title"></h2>
-      <ul class="news" data-i18n="nw.items"></ul>
+  <section id="faq" class="sec tint">
+    <div class="container faq">
+      <div class="head">
+        <h2 data-i18n="faq.title"></h2>
+      </div>
+      <div class="faq-list" data-i18n="faq.items"></div>
     </div>
   </section>
 
-  <section id="company" class="block">
-    <div class="wrap">
-      <h2 data-i18n="co.title"></h2>
-      <dl class="info" data-i18n="co.info"></dl>
+  <section id="company" class="sec">
+    <div class="container">
+      <div class="head">
+        <h2 data-i18n="co.q"></h2>
+      </div>
+      <div class="about">
+        <div class="co">
+          <h3 data-i18n="co.title"></h3>
+          <dl class="info" data-i18n="co.info"></dl>
+        </div>
+        <div id="news" class="co">
+          <h3 data-i18n="nw.title"></h3>
+          <ul class="news" data-i18n="nw.items"></ul>
+        </div>
+      </div>
     </div>
   </section>
 
-  <section id="contact" class="block tint">
-    <div class="wrap">
-      <h2 data-i18n="ct.title"></h2>
-      <p class="sub" data-i18n="ct.lead"></p>
-      <div class="contact">
+  <section id="contact" class="sec tint">
+    <div class="container contact">
+      <div class="contact-side">
+        <div class="head">
+          <h2 data-i18n="ct.title"></h2>
+          <p class="lead" data-i18n="ct.lead"></p>
+        </div>
         <div class="ways">
           <a href="mailto:{{cfg.email}}"><small data-i18n="ct.mail"></small><strong>{{cfg.email}}</strong></a>
         </div>
-        <form id="contactForm" action="{{cfg.formEndpoint}}" method="POST">
-          <div class="row2">
-            <label><span data-i18n="f.name"></span><input name="name" required autocomplete="name"></label>
-            <label><span data-i18n="f.company"></span><input name="company" autocomplete="organization"></label>
-          </div>
-          <label><span data-i18n="f.email"></span><input type="email" name="email" required autocomplete="email"></label>
-          <label><span data-i18n="f.topic"></span><select name="topic" data-i18n="f.topics"></select></label>
-          <label><span data-i18n="f.msg"></span><textarea name="message" rows="4" required></textarea></label>
-          <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
-          <input type="hidden" name="ts">
-          {{turnstile}}
-          <label class="consent"><input type="checkbox" name="privacy_consent" value="yes" required><span data-i18n="f.consent"></span></label>
-          <button class="btn" type="submit" data-i18n="f.send"></button>
-          <p id="formMsg" role="status"></p>
-        </form>
       </div>
+      <form id="contactForm" action="{{cfg.formEndpoint}}" method="POST">
+        <div class="row2">
+          <label><span data-i18n="f.name"></span><input name="name" required autocomplete="name"></label>
+          <label><span data-i18n="f.company"></span><input name="company" autocomplete="organization"></label>
+        </div>
+        <label><span data-i18n="f.email"></span><input type="email" name="email" required autocomplete="email"></label>
+        <label><span data-i18n="f.topic"></span><select name="topic" data-i18n="f.topics"></select></label>
+        <label><span data-i18n="f.msg"></span><textarea name="message" rows="5" required></textarea></label>
+        <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <input type="hidden" name="ts">
+        {{turnstile}}
+        <label class="consent"><input type="checkbox" name="privacy_consent" value="yes" required><span data-i18n="f.consent"></span></label>
+        <button class="btn" type="submit" data-i18n="f.send"></button>
+        <p id="formMsg" role="status"></p>
+      </form>
     </div>
   </section>
 </main>
 
-<footer>
-  <div class="wrap">
-    <span class="ft-logo" aria-label="Axirria Digital Vietnam"><img class="mark" src="{{base}}logo-mark.svg" width="44" height="44" alt=""><span class="nm"><span class="wm" aria-hidden="true">ax<i>ı<b class="h"></b></i>rr<i>ı<b class="f"></b></i>a</span><span class="r">digital vietnam</span></span></span>
-    <span>© 2026 AXIRRIA DIGITAL VIETNAM LIMITED COMPANY</span>
-    <nav class="ft-prods" aria-label="Products"><span data-i18n="ft.products"></span>{{productLinks}}</nav>
-    <a class="ft-link" href="{{privacyHref}}" data-i18n="ft.privacy"></a>
-    <span data-i18n="ft.partner"></span>
+<footer class="ft-home">
+  <div class="container">
+    <p class="ft-say"><span data-i18n="ft.say"></span><a href="mailto:{{cfg.email}}">{{cfg.email}}</a></p>
+    <div class="ft-row">
+      <span class="ft-logo" aria-label="Axirria Digital Vietnam"><img class="mark" src="{{base}}logo-mark.svg" width="44" height="44" alt=""><span class="nm"><span class="wm" aria-hidden="true">ax<i>ı<b class="h"></b></i>rr<i>ı<b class="f"></b></i>a</span><span class="r">digital vietnam</span></span></span>
+      <nav class="ft-prods" aria-label="Products"><span data-i18n="ft.products"></span>{{productLinks}}</nav>
+      <a class="ft-link" href="{{privacyHref}}" data-i18n="ft.privacy"></a>
+    </div>
+    <div class="ft-row ft-legal">
+      <span>© 2026 Axirria Digital Vietnam Limited Company</span>
+      <span data-i18n="ft.partner"></span>
+    </div>
   </div>
 </footer>
 

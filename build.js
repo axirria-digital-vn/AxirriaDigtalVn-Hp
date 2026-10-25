@@ -146,7 +146,7 @@ function render(page, lang) {
 
 // Everything the site serves goes to dist/ (the deploy folder); sources stay out of it.
 const OUT = 'dist';
-const ASSETS = ['style.css', 'header.css', 'header.js', 'main.js', 'i18n.js', 'logo-mark.svg', 'og.png'];
+const ASSETS = ['style.css', 'tokens.css', 'base.css', 'header.css', 'header.js', 'main.js', 'i18n.js', 'logo-mark.svg', 'og.png'];
 fs.rmSync(OUT, { recursive: true, force: true });
 for (const page of PAGES) {
   for (const lang of Object.keys(LANGS)) {
