@@ -244,8 +244,9 @@ table.cmp { width: 100%; border-collapse: collapse; }
 .partner blockquote { font-family: var(--font-display); font-size: var(--text-title); font-weight: 500; line-height: 1.5; margin-block: var(--space-md) var(--space-lg); }
 .partner p { color: var(--color-ink-2); }
 .pt-link { margin-top: var(--space-lg); }
-.partner dl { border-top: 2px solid var(--color-ink); }
-.partner dt { font-weight: 700; padding-top: var(--space-md); }
+.partner dt { font-weight: 700; }
+.partner dd + dt { padding-top: var(--space-md); }
+.partner dd:last-child { border-bottom: 0; padding-bottom: 0; }
 .partner dd { color: var(--color-ink-2); padding-bottom: var(--space-md); border-bottom: 1px solid var(--color-rule); }
 @media (max-width: 60rem) {
   .cases { grid-template-columns: minmax(0, 1fr); gap: var(--space-2xl); }
