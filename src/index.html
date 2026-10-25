@@ -28,14 +28,15 @@
         <table>
           <thead><tr><th data-i18n="est.task"></th><th data-i18n="est.split"></th><th style="text-align:right" data-i18n="est.hours"></th></tr></thead>
           <tbody>
-            <tr><td data-i18n="est.r1"></td><td class="bar"><div class="split"><i class="dev" style="width:20%"></i><i class="ai" style="width:60%"></i></div></td><td class="h">4.0h</td></tr>
-            <tr><td data-i18n="est.r2"></td><td class="bar"><div class="split"><i class="dev" style="width:10%"></i><i class="ai" style="width:50%"></i></div></td><td class="h">3.0h</td></tr>
-            <tr><td data-i18n="est.r3"></td><td class="bar"><div class="split"><i class="dev" style="width:30%"></i><i class="ai" style="width:70%"></i></div></td><td class="h">5.0h</td></tr>
-            <tr><td data-i18n="est.r4"></td><td class="bar"><div class="split"><i class="ai loop" style="width:100%"></i></div></td><td class="h" data-i18n="est.par"></td></tr>
+            <!-- bar widths: 10 working days (80h) = 100% -->
+            <tr><td data-i18n="est.r1"></td><td class="bar"><div class="vs"><i class="old" style="width:50%"></i><i class="new" style="width:5%"></i></div></td><td class="h">4.0h</td></tr>
+            <tr><td data-i18n="est.r2"></td><td class="bar"><div class="vs"><i class="old" style="width:40%"></i><i class="new" style="width:3.75%"></i></div></td><td class="h">3.0h</td></tr>
+            <tr><td data-i18n="est.r3"></td><td class="bar"><div class="vs"><i class="old" style="width:100%"></i><i class="new" style="width:6.25%"></i></div></td><td class="h">5.0h</td></tr>
+            <tr><td data-i18n="est.r4"></td><td class="bar"><div class="vs"><i class="old" style="width:50%"></i><i class="new loop" style="width:100%"></i></div></td><td class="h" data-i18n="est.par"></td></tr>
           </tbody>
           <tfoot><tr><td colspan="2" data-i18n="est.total"></td><td class="h">12h</td></tr></tfoot>
         </table>
-        <div class="key"><span data-i18n="est.dev"></span><span class="ai" data-i18n="est.ai"></span><b data-i18n="est.demo"></b></div>
+        <div class="key"><span class="old" data-i18n="est.dev"></span><span data-i18n="est.ai"></span><span class="par" data-i18n="est.loop"></span><b data-i18n="est.demo"></b></div>
       </div>
     </div>
   </section>
@@ -61,18 +62,16 @@
     <div class="wrap">
       <h2 data-i18n="off.title"></h2>
       <p class="sub" data-i18n="off.lead"></p>
-      <div class="roles">
-        <div class="role dev"><h3><span>0.5</span><em style="font-style:normal" data-i18n="off.dev"></em></h3><ul data-i18n="off.devl"></ul></div>
-        <div class="role ai">
-          <div class="ai-top"><h3><span>1</span><em style="font-style:normal" data-i18n="off.agent"></em></h3><p class="live"><i></i><span data-i18n="off.live"></span></p></div>
-          <div class="ai-body"><ul data-i18n="off.agentl"></ul><div class="clock"><strong><span class="count" data-to="24">24</span><small>h</small></strong><span data-i18n="off.nonstop"></span></div></div>
-        </div>
-      </div>
-      <p class="half-note" data-i18n="off.half"></p>
+      <ol class="pillars">
+        <li><h3 data-i18n="off.p1t"></h3><p data-i18n="off.p1d"></p></li>
+        <li><h3 data-i18n="off.p2t"></h3><p data-i18n="off.p2d"></p></li>
+        <li><h3 data-i18n="off.p3t"></h3><p data-i18n="off.p3d"></p></li>
+        <li><h3 data-i18n="off.p4t"></h3><p data-i18n="off.p4d"></p></li>
+      </ol>
       <div class="day" role="figure" aria-labelledby="dayTitle">
         <h3 id="dayTitle" data-i18n="day.title"></h3>
-        <div class="lane"><span data-i18n="est.dev"></span><div class="track"><i class="dev" style="left:37.5%;width:37.5%"></i></div></div>
-        <div class="lane"><span data-i18n="est.ai"></span><div class="track"><i class="loop" style="left:0;width:100%"></i></div></div>
+        <div class="lane"><span data-i18n="day.dev"></span><div class="track"><i class="dev" style="left:37.5%;width:37.5%"></i></div></div>
+        <div class="lane"><span data-i18n="day.ai"></span><div class="track"><i class="loop" style="left:0;width:100%"></i></div></div>
         <div class="axis" aria-hidden="true"><span>0:00</span><span>6:00</span><span>12:00</span><span>18:00</span><span>24:00</span></div>
         <p data-i18n="day.note"></p>
       </div>
