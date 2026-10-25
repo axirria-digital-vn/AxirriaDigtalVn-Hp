@@ -1,5 +1,5 @@
 /* Hallmark · shape: conversational-faq · genre: modern-minimal · theme: brand · redesign: full
- * paper: oklch(99.4% 0.003 275) · accent: oklch(30.3% 0.087 270) · display: Bricolage Grotesque · body: BIZ UDPGothic · hero: Stage · nav: kept · footer: statement · signature: the itemised estimate beside the claim, a month against twelve hours
+ * paper: oklch(99.4% 0.003 275) · accent: oklch(30.3% 0.087 270) · display: Bricolage Grotesque · body: BIZ UDPGothic · hero: Stage · nav: kept · footer: company columns · signature: the itemised estimate beside the claim, a month against twelve hours
  * axes: light/grotesk-heavy/cool · posture: restrained (a soft yellow hero, the brand yellow on the kept nav and the marks) · contrast: pass · fold: pass · v2.0.0 · draw: 77cdcc
  * job: hire, the action in the hero and again after the work · copy: section heads reworded as questions (listed in the handoff) */
 /* Hallmark · pre-emit critique: P4 H4 E4 S4 R3 V4 · weakest: R, the owner's content is long, so the page alternates paper, tint, ink and yellow and parts the long sections with sticky heads */
@@ -269,6 +269,8 @@ dl.info small { color: var(--color-ink-2); font-size: var(--text-sm); }
 form { display: grid; gap: var(--space-lg); padding: var(--space-xl); background: var(--color-paper); border: 1px solid var(--color-rule); border-radius: var(--radius-card); }
 label { display: grid; gap: var(--space-xs); font-size: var(--text-sm); font-weight: 700; }
 input, select, textarea { min-height: 48px; width: 100%; padding: var(--space-sm); font-weight: 400; color: var(--color-ink); background: var(--color-paper); border: 1px solid var(--color-edge); border-radius: var(--radius-control); }
+/* own chevron, set in from the edge like the text */
+select { appearance: none; padding-right: var(--space-2xl); background-image: linear-gradient(45deg, transparent 50%, var(--color-ink) 50%), linear-gradient(135deg, var(--color-ink) 50%, transparent 50%); background-position: calc(100% - 22px) 50%, calc(100% - 16px) 50%; background-size: 6px 6px; background-repeat: no-repeat; cursor: pointer; }
 input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 2px solid var(--color-focus); outline-offset: -2px; }
 input:disabled, select:disabled, textarea:disabled { opacity: 0.55; cursor: not-allowed; }
 .row2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-md); }
@@ -289,22 +291,21 @@ form .btn { justify-self: start; }
 }
 @media (max-width: 40rem) { form { padding: var(--space-lg) var(--space-md); } .row2 { grid-template-columns: minmax(0, 1fr); } }
 
-/* footer: the home page closes on one sentence and the email */
-footer { background: var(--color-ink); color: var(--color-on-ink-2); padding-block: var(--space-lg); font-size: var(--text-sm); --color-focus: var(--color-focus-on-ink); }
-footer .wrap { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-sm) var(--space-lg); }
-footer .ft-logo { color: var(--color-on-ink); margin-right: auto; }
-.ft-logo .mark { width: 36px; height: 36px; border-radius: var(--radius-card); box-shadow: 0 0 0 1px var(--color-rule-on-ink); }
+/* footer: company details, site map, products, legal; copyright underneath */
+.site-ft { background: var(--color-ink); color: var(--color-on-ink-2); padding-block: var(--space-2xl) var(--space-lg); font-size: var(--text-sm); --color-focus: var(--color-focus-on-ink); }
+.ft-grid { display: grid; grid-template-columns: minmax(0, 2fr) repeat(3, minmax(0, 1fr)); gap: var(--space-xl) var(--gap-columns); }
+.ft-co p { margin-top: var(--space-md); }
+.ft-logo { color: var(--color-on-ink); }
+.ft-logo .mark { width: 36px; height: 36px; border-radius: var(--radius-control); box-shadow: 0 0 0 1px var(--color-rule-on-ink); }
 .ft-logo .nm { font-size: 1.2rem; }
-.ft-link { color: var(--color-on-ink); }
-.ft-prods { display: flex; gap: var(--space-sm); flex-wrap: wrap; align-items: center; }
-.ft-prods a { color: var(--color-on-ink); }
-.ft-home { padding-block: var(--space-2xl) var(--space-xl); }
-.ft-say { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--space-sm) var(--space-xl); font-family: var(--font-display); font-size: var(--text-title); font-weight: 700; line-height: 1.4; color: var(--color-on-ink); }
-.ft-say a { color: var(--color-field); text-underline-offset: 0.2em; overflow-wrap: anywhere; }
-.ft-say a:hover { text-decoration-thickness: 2px; }
-.ft-row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-md) var(--space-xl); margin-top: var(--space-xl); padding-top: var(--space-lg); border-top: 1px solid var(--color-rule-on-ink); }
-.ft-legal { margin-top: var(--space-md); padding-top: 0; border-top: 0; justify-content: space-between; font-size: var(--text-sm); }
-:is(footer, .band-ink) a:active { color: var(--color-field); }
+.ft-h { font-weight: 700; color: var(--color-on-ink); margin-bottom: var(--space-sm); }
+.site-ft li + li { margin-top: var(--space-xs); }
+.site-ft a:not(.ft-logo) { color: var(--color-on-ink-2); text-decoration: none; }
+.site-ft a:not(.ft-logo):hover { color: var(--color-on-ink); text-decoration: underline; }
+.ft-bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-xs) var(--space-xl); margin-top: var(--space-2xl); padding-top: var(--space-lg); border-top: 1px solid var(--color-rule-on-ink); }
+@media (max-width: 60rem) { .ft-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } .ft-co { grid-column: 1 / -1; } }
+@media (max-width: 40rem) { .ft-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+:is(.site-ft, .band-ink) a:active { color: var(--color-field); }
 
 /* ---------- munemo ---------- */
 .mu { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: var(--space-2xl); align-items: start; }

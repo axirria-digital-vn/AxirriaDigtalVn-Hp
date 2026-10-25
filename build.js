@@ -37,6 +37,27 @@ function siteHeader(lang, home, base, langSwitch, attrs = '') {
 </header>`;
 }
 
+// Site footer, the same on every company page and the Perito pages. home and privacy are hrefs for this page.
+function siteFooter(lang, home, base, privacy) {
+  const dict = I18N[lang];
+  const li = (href, text) => `<li><a href="${href}">${text}</a></li>`;
+  const sitemap = ['services', 'offshore', 'cases', 'company', 'contact'].map((k) => li(`${home}#${k}`, dict['nav.' + k])).join('');
+  const products = PRODUCTS.map((p) => li(esc(p.href[lang]), esc(p.name))).join('');
+  return `<footer class="site-ft">
+  <div class="wrap ft-grid">
+    <div class="ft-co">
+      <a class="ft-logo" href="${home || '#top'}" aria-label="Axirria Digital Vietnam"><img class="mark" src="${base}logo-mark.svg" width="44" height="44" alt=""><span class="nm"><span class="wm" aria-hidden="true">ax<i>ı<b class="h"></b></i>rr<i>ı<b class="f"></b></i>a</span><span class="r">digital vietnam</span></span></a>
+      <p>Axirria Digital Vietnam Limited Company<br>${dict['ft.addr']}</p>
+      <p><a href="mailto:${cfg.email}">${cfg.email}</a></p>
+    </div>
+    <nav aria-label="${dict['ft.sitemap']}"><p class="ft-h">${dict['ft.sitemap']}</p><ul>${sitemap}</ul></nav>
+    <nav aria-label="${dict['ft.products']}"><p class="ft-h">${dict['ft.products']}</p><ul>${products}</ul></nav>
+    <nav aria-label="${dict['ft.legal']}"><p class="ft-h">${dict['ft.legal']}</p><ul>${li(privacy, dict['ft.privacy'])}</ul></nav>
+  </div>
+  <div class="wrap ft-bottom"><span>© 2026 Axirria Digital Vietnam Limited Company</span><span>${dict['ft.partner']}</span></div>
+</footer>`;
+}
+
 // Product pages with a version in every language (<link rel="alternate" hreflang> for each, e.g. Perito)
 // get one header in the page's language whose switch opens the other version.
 // Single-language product pages (Tsunagu) get the site header in every language; the one shown follows
@@ -51,7 +72,8 @@ function addSiteHeader(file) {
   if (Object.keys(LANGS).every((l) => alt[l])) {
     const langSwitch = Object.keys(LANGS).map((l) => langLink(l, alt[l], l === lang)).join('');
     html = html.replace('</head>', `${FONTS}\n<link rel="stylesheet" href="/header.css">\n</head>`)
-      .replace(/<body[^>]*>/, (m) => `${m}\n${siteHeader(lang, '/' + LANGS[lang].dir, '/', langSwitch)}\n<script src="/header.js" defer></script>`);
+      .replace(/<body[^>]*>/, (m) => `${m}\n${siteHeader(lang, '/' + LANGS[lang].dir, '/', langSwitch)}\n<script src="/header.js" defer></script>`)
+      .replace(/<footer>[\s\S]*?<\/footer>/, siteFooter(lang, '/' + LANGS[lang].dir, '/', '/' + LANGS[lang].dir + 'privacy/'));
     return fs.writeFileSync(file, html);
   }
   const headers = Object.keys(LANGS).map((h) => {
@@ -123,7 +145,8 @@ function render(page, lang) {
     return `<div class="prod-group"><h4 class="prod-gt">${dict['pr.g.' + g]}</h4><p class="prod-gn">${dict['pr.g.' + g + 'Note']}</p><div class="prod-grid">${items.map(card).join('')}</div></div>`;
   }).join('');
   const productLinks = PRODUCTS.map((p) => `<a href="${esc(p.href[lang])}">${esc(p.name)}</a>`).join('');
-  const vars = { lang, base, head, header, langSwitch, productCards, productLinks, productsHref: rel(LANGS[lang].dir) + '#products', turnstile, 'plan.hours': cfg.plan.devHoursPerMonth, homeHref: rel(LANGS[lang].dir), privacyHref: rel(LANGS[lang].dir + 'privacy/') };
+  const footer = siteFooter(lang, page.dir ? rel(LANGS[lang].dir) : '', base, rel(LANGS[lang].dir + 'privacy/'));
+  const vars = { lang, base, head, header, footer, langSwitch, productCards, productLinks, productsHref: rel(LANGS[lang].dir) + '#products', turnstile, 'plan.hours': cfg.plan.devHoursPerMonth, homeHref: rel(LANGS[lang].dir), privacyHref: rel(LANGS[lang].dir + 'privacy/') };
   for (const [k, v] of Object.entries(cfg)) if (typeof v !== 'object') vars['cfg.' + k] = v;
 
   let html = fs.readFileSync(page.src, 'utf8');

@@ -32,6 +32,7 @@ var I18N = {
     'pr.g.ownNote': '当社が企画から開発・運用まで行っています。',
     'pr.all': 'すべての製品を見る',
     'pr.more': '詳しく見る',
+    'ft.sitemap': 'サイトマップ', 'ft.legal': 'ポリシー', 'ft.addr': 'ベトナム タインホア省 サムソン坊',
     'ft.products': '製品',
     'nav.services': 'サービス',
     'nav.offshore': '開発体制',
@@ -65,7 +66,6 @@ var I18N = {
     'est.d5': '約1か月（24営業日）',
    
     'start.q': 'どう始めればいいですか？',
-    'ft.say': '次の機能が何時間でできるか、まずは聞いてみてください。',
 
     'svc.title': '何を頼めますか？',
     'svc.lead': '自社プロダクト、導入支援、開発リソース。<span class="nb">どこから始めても、</span>必要な範囲だけご依頼いただけます。',
@@ -181,6 +181,7 @@ var I18N = {
     'pr.g.ownNote': 'Planned, built and run by us.',
     'pr.all': 'See all products',
     'pr.more': 'Learn more',
+    'ft.sitemap': 'Site map', 'ft.legal': 'Legal', 'ft.addr': 'Sam Son Ward, Thanh Hoa Province, Vietnam',
     'ft.products': 'Products',
     'nav.services': 'Services',
     'nav.offshore': 'How we build',
@@ -214,7 +215,6 @@ var I18N = {
     'est.d5': 'About a month (24 business days)',
    
     'start.q': 'How do we start?',
-    'ft.say': 'Ask us how many hours your next feature takes.',
 
     'svc.title': 'What can we take on?',
     'svc.lead': 'Our own products, adoption support, or development capacity. Start wherever you need and only pay for that part.',
