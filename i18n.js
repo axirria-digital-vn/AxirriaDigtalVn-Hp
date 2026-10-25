@@ -40,8 +40,8 @@ var I18N = {
 
     'hero.title': '<span>1か月かかった機能を、</span><br><span>数日で。</span>',
     'hero.lead': 'AIを使いこなすエンジニアが、機能ごとに時間で見積もり、数日で形にします。',
-    'hero.oldL': '従来の目安', 'hero.oldV': '24営業日',
-    'hero.newL': 'Axirria', 'hero.newV': '12時間',
+   
+   
     'hero.cta1': '無料で相談する',
     'est.title': '見積り例：社内ナレッジ検索（RAG）の追加',
     'est.team': '機能ごとに、時間単位で見積もります',
@@ -55,7 +55,7 @@ var I18N = {
     'est.dev': '従来の目安',
     'est.ai': 'Axirria',
     'est.demo': '初回デモは3営業日後',
-    'hero.cap': '社内ナレッジ検索（RAG）を追加した見積り例。作業は12時間、初回デモは3営業日後です。',
+   
     'est.q': '本当に数日でできるのですか？',
     'est.a': '機能をタスクに分け、すべて時間で見積もります。従来の目安と並べると、差がそのまま見えます。',
     'est.d1': '5日',
@@ -63,7 +63,7 @@ var I18N = {
     'est.d3': '10日',
     'est.d4': '5日（手動テスト）',
     'est.d5': '約1か月（24営業日）',
-    'cmp.q': '従来の開発会社と、何が違うのですか？',
+   
     'start.q': 'どう始めればいいですか？',
     'ft.say': '次の機能が何時間でできるか、まずは聞いてみてください。',
 
@@ -189,8 +189,8 @@ var I18N = {
 
     'hero.title': '<span>What took a month</span><br><span>now ships in days.</span>',
     'hero.lead': 'AI-fluent engineers quote every feature in hours and ship it in days.',
-    'hero.oldL': 'Typical estimate', 'hero.oldV': '24 business days',
-    'hero.newL': 'Axirria', 'hero.newV': '12 hours',
+   
+   
     'hero.cta1': 'Book a free consultation',
     'est.title': 'Sample estimate: add internal knowledge search (RAG)',
     'est.team': 'Every feature estimated in hours',
@@ -204,7 +204,7 @@ var I18N = {
     'est.dev': 'Typical estimate',
     'est.ai': 'Axirria',
     'est.demo': 'First demo in 3 business days',
-    'hero.cap': 'Sample estimate for adding an internal knowledge search (RAG): 12 hours of work, first demo in 3 business days.',
+   
     'est.q': 'Can it really take days?',
     'est.a': 'We split each feature into tasks and estimate every one in hours. Set beside a typical estimate, the gap speaks for itself.',
     'est.d1': '5 days',
@@ -212,7 +212,7 @@ var I18N = {
     'est.d3': '10 days',
     'est.d4': '5 days (manual testing)',
     'est.d5': 'About a month (24 business days)',
-    'cmp.q': 'How is this different from a typical vendor?',
+   
     'start.q': 'How do we start?',
     'ft.say': 'Ask us how many hours your next feature takes.',
 

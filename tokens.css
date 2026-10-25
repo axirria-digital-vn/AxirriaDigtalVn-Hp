@@ -19,6 +19,6 @@
   --shadow-lift: 0 1px 2px oklch(30% 0.087 270 / 0.08), 0 16px 32px -20px oklch(30% 0.087 270 / 0.35);
   --color-accent: oklch(30.3% 0.087 270); --color-accent-ink: oklch(99.4% 0.003 275); --color-focus: oklch(30.3% 0.087 270); --color-focus-on-ink: oklch(87.7% 0.174 93);
   --font-display: "Bricolage Grotesque", "BIZ UDPGothic", ui-sans-serif, system-ui, sans-serif; --font-body: "BIZ UDPGothic", "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif; --font-outlier: var(--font-body);
-  --radius-card: 8px; --radius-control: 6px; --radius-pill: 999px; --rule-hair: 1px; --shadow-card: none;
+  --radius-card: 12px; --radius-control: 6px; --radius-pill: 999px; --rule-hair: 1px; --shadow-card: none;
   --tracking-display: -0.02em;
 }

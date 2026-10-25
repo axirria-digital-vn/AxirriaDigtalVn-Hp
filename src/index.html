@@ -16,27 +16,13 @@
 <main id="top">
   <section class="hero">
     <div class="container hero-in">
-      <h1 data-i18n="hero.title"></h1>
-      <div class="hero-foot">
+      <div class="hero-text">
+        <h1 data-i18n="hero.title"></h1>
         <p class="lead" data-i18n="hero.lead"></p>
         <a class="btn" href="#contact" data-i18n="hero.cta1"></a>
       </div>
-      <figure class="span" aria-labelledby="spanCap">
-        <div class="span-row"><p><span data-i18n="hero.oldL"></span><b data-i18n="hero.oldV"></b></p><i class="bar old" style="--w:100%"></i></div>
-        <div class="span-row"><p><span data-i18n="hero.newL"></span><b data-i18n="hero.newV"></b></p><i class="bar new" style="--w:6.25%"></i></div>
-        <figcaption id="spanCap" data-i18n="hero.cap"></figcaption>
-      </figure>
-    </div>
-  </section>
-
-  <section id="estimate" class="sec">
-    <div class="container">
-      <div class="head split">
-        <h2 data-i18n="est.q"></h2>
-        <p class="lead" data-i18n="est.a"></p>
-      </div>
       <div class="sheet" role="figure" aria-labelledby="sheetTitle">
-        <h3 id="sheetTitle"><span data-i18n="est.title"></span> <small data-i18n="est.team"></small></h3>
+        <h2 id="sheetTitle"><span data-i18n="est.title"></span> <small data-i18n="est.team"></small></h2>
         <div class="tbl">
           <table class="est">
             <thead><tr><th scope="col" data-i18n="est.task"></th><th scope="col" data-i18n="est.dev"></th><th scope="col" class="r" data-i18n="est.ai"></th></tr></thead>
@@ -55,40 +41,39 @@
     </div>
   </section>
 
-  <section id="offshore" class="sec tint">
-    <div class="container why">
-      <div class="head">
-        <h2 data-i18n="off.title"></h2>
-        <p class="lead" data-i18n="off.lead"></p>
-      </div>
-      <ol class="pillars">
-        <li><h3 data-i18n="off.p1t"></h3><p data-i18n="off.p1d"></p></li>
-        <li><h3 data-i18n="off.p2t"></h3><p data-i18n="off.p2d"></p></li>
-        <li>
-          <h3 data-i18n="off.p3t"></h3><p data-i18n="off.p3d"></p>
-          <div class="day" role="figure" aria-labelledby="dayTitle">
-            <p id="dayTitle" class="day-t" data-i18n="day.title"></p>
-            <div class="lane"><span data-i18n="day.dev"></span><div class="track"><i class="dev" style="--x:37.5%;--w:37.5%"></i></div></div>
-            <div class="lane"><span data-i18n="day.ai"></span><div class="track"><i class="loop" style="--x:0%;--w:100%"></i></div></div>
-            <div class="axis" aria-hidden="true"><span>0:00</span><span>6:00</span><span>12:00</span><span>18:00</span><span>24:00</span></div>
-            <p class="day-n" data-i18n="day.note"></p>
-          </div>
-        </li>
-        <li><h3 data-i18n="off.p4t"></h3><p data-i18n="off.p4d"></p></li>
-      </ol>
-    </div>
-  </section>
-
-  <section class="sec band-ink">
+  <section id="estimate" class="sec band-ink">
     <div class="container">
-      <div class="head">
-        <h2 data-i18n="cmp.q"></h2>
+      <div class="head split">
+        <h2 data-i18n="est.q"></h2>
+        <p class="lead" data-i18n="est.a"></p>
       </div>
       <div class="tbl">
         <table class="cmp">
           <thead><tr><th scope="col"></th><th scope="col" data-i18n="cmp.old"></th><th scope="col" data-i18n="cmp.new"></th></tr></thead>
           <tbody data-i18n="cmp.rows"></tbody>
         </table>
+      </div>
+    </div>
+  </section>
+
+  <section id="offshore" class="sec tint">
+    <div class="container">
+      <div class="head split">
+        <h2 data-i18n="off.title"></h2>
+        <p class="lead" data-i18n="off.lead"></p>
+      </div>
+      <ol class="pillars">
+        <li><h3 data-i18n="off.p1t"></h3><p data-i18n="off.p1d"></p></li>
+        <li><h3 data-i18n="off.p2t"></h3><p data-i18n="off.p2d"></p></li>
+        <li><h3 data-i18n="off.p3t"></h3><p data-i18n="off.p3d"></p></li>
+        <li><h3 data-i18n="off.p4t"></h3><p data-i18n="off.p4d"></p></li>
+      </ol>
+      <div class="day" role="figure" aria-labelledby="dayTitle">
+        <p id="dayTitle" class="day-t" data-i18n="day.title"></p>
+        <div class="lane"><span data-i18n="day.dev"></span><div class="track"><i class="dev" style="--x:37.5%;--w:37.5%"></i></div></div>
+        <div class="lane"><span data-i18n="day.ai"></span><div class="track"><i class="loop" style="--x:0%;--w:100%"></i></div></div>
+        <div class="axis" aria-hidden="true"><span>0:00</span><span>6:00</span><span>12:00</span><span>18:00</span><span>24:00</span></div>
+        <p class="day-n" data-i18n="day.note"></p>
       </div>
     </div>
   </section>
@@ -112,9 +97,9 @@
     </div>
   </section>
 
-  <section id="pricing" class="sec band-field">
+  <section id="pricing" class="sec tint">
     <div class="container start">
-      <div class="head">
+      <div class="head split">
         <h2 data-i18n="start.q"></h2>
         <p class="lead" data-i18n="plan.title"></p>
       </div>
@@ -165,7 +150,7 @@
 
   <section id="faq" class="sec tint">
     <div class="container faq">
-      <div class="head">
+      <div class="head split">
         <h2 data-i18n="faq.title"></h2>
       </div>
       <div class="faq-list" data-i18n="faq.items"></div>
@@ -174,7 +159,7 @@
 
   <section id="company" class="sec">
     <div class="container">
-      <div class="head">
+      <div class="head split">
         <h2 data-i18n="co.q"></h2>
       </div>
       <div class="about">
@@ -192,13 +177,13 @@
 
   <section id="contact" class="sec tint">
     <div class="container contact">
-      <div class="contact-side">
-        <div class="head">
-          <h2 data-i18n="ct.title"></h2>
+      <div class="head split">
+        <h2 data-i18n="ct.title"></h2>
+        <div class="contact-side">
           <p class="lead" data-i18n="ct.lead"></p>
-        </div>
-        <div class="ways">
-          <a href="mailto:{{cfg.email}}"><small data-i18n="ct.mail"></small><strong>{{cfg.email}}</strong></a>
+          <div class="ways">
+            <a href="mailto:{{cfg.email}}"><small data-i18n="ct.mail"></small><strong>{{cfg.email}}</strong></a>
+          </div>
         </div>
       </div>
       <form id="contactForm" action="{{cfg.formEndpoint}}" method="POST">
