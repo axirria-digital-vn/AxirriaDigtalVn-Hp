@@ -239,7 +239,7 @@ table.cmp { width: 100%; border-collapse: collapse; }
 .faq-list summary::after { content: "+"; position: absolute; right: var(--space-xs); top: 50%; transform: translateY(-50%); font-family: var(--font-display); font-size: var(--text-title); font-weight: 500; color: var(--color-ink-2); }
 .faq-list details[open] summary::after { content: "−"; }
 .faq-list summary:hover { color: var(--color-ink-2); }
-.faq-list details p { padding: 0 var(--space-xl) var(--space-lg) 0; color: var(--color-ink-2); }
+.faq-list details p { max-width: none; padding: 0 var(--space-xl) var(--space-lg) 0; color: var(--color-ink-2); }
 
 /* contact, the company and the news */
 .contact-side { display: grid; justify-items: start; gap: var(--space-md); }
