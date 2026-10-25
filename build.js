@@ -135,15 +135,11 @@ function render(page, lang) {
   // Product cards and footer links from products.json (hrefs are site-absolute paths),
   // grouped by `group` in GROUPS order; each group has a heading and a note in i18n (pr.g.<group>).
   const card = (p) => {
-    const icon = p.icon ? `<img src="${esc(p.icon)}" width="56" height="56" alt="">` : `<span aria-hidden="true">${esc(p.name[0])}</span>`;
+    const icon = p.icon ? `<img src="${esc(p.icon)}" width="48" height="48" alt="">` : `<span aria-hidden="true">${esc(p.name[0])}</span>`;
     const status = p.status ? ` <em class="prod-st">${esc(p.status[lang])}</em>` : '';
-    return `<a class="prod" href="${esc(p.href[lang])}"><span class="prod-ic">${icon}</span><span class="prod-b"><span class="prod-n">${esc(p.name)}${status}</span><span class="prod-t">${esc(p.tagline[lang])}</span><span class="prod-more">${dict['pr.more']}</span></span></a>`;
+    return `<a class="prod stock" href="${esc(p.href[lang])}"><span class="prod-ic">${icon}</span><span class="prod-g">${dict['pr.g.' + p.group]}</span><span class="prod-n">${esc(p.name)}${status}</span><span class="prod-t">${esc(p.tagline[lang])}</span><span class="prod-more">${dict['pr.more']}</span></a>`;
   };
-  const productCards = GROUPS.map((g) => {
-    const items = PRODUCTS.filter((p) => p.group === g);
-    if (!items.length) return '';
-    return `<div class="prod-group"><h4 class="prod-gt">${dict['pr.g.' + g]}</h4><p class="prod-gn">${dict['pr.g.' + g + 'Note']}</p><div class="prod-grid">${items.map(card).join('')}</div></div>`;
-  }).join('');
+  const productCards = GROUPS.flatMap((g) => PRODUCTS.filter((p) => p.group === g)).map(card).join('');
   const productLinks = PRODUCTS.map((p) => `<a href="${esc(p.href[lang])}">${esc(p.name)}</a>`).join('');
   const footer = siteFooter(lang, page.dir ? rel(LANGS[lang].dir) : '', base, rel(LANGS[lang].dir + 'privacy/'));
   const vars = { lang, base, head, header, footer, langSwitch, productCards, productLinks, productsHref: rel(LANGS[lang].dir) + '#products', turnstile, 'plan.hours': cfg.plan.devHoursPerMonth, homeHref: rel(LANGS[lang].dir), privacyHref: rel(LANGS[lang].dir + 'privacy/') };

@@ -3,7 +3,7 @@
 @import url("./tokens.css");
 .site-hd{
   --yellow:var(--color-field); --indigo:var(--color-ink); --indigo-2:var(--color-ink-2); --white:var(--color-paper);
-  --hd-display:var(--font-display);
+  --hd-display:var(--font-brand);
   background:var(--yellow);color:var(--indigo);position:sticky;top:0;z-index:50;transition:box-shadow .25s;
   font:400 16px/1.8 var(--font-body);border:0;text-align:left
 }

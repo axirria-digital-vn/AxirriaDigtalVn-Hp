@@ -14,14 +14,14 @@
 {{header}}
 
 <main id="top">
-  <section class="hero">
+  <section class="hero desk">
     <div class="container hero-in">
       <div class="hero-text">
         <h1 data-i18n="hero.title"></h1>
         <p class="lead" data-i18n="hero.lead"></p>
         <a class="btn" href="#contact" data-i18n="hero.cta1"></a>
       </div>
-      <div class="sheet" role="figure" aria-labelledby="sheetTitle">
+      <div class="sheet stock" role="figure" aria-labelledby="sheetTitle">
         <h2 id="sheetTitle"><span data-i18n="est.title"></span> <small data-i18n="est.team"></small></h2>
         <div class="tbl">
           <table class="est">
@@ -36,8 +36,11 @@
             <tfoot><tr><th scope="row" data-i18n="est.total"></th><td><span class="d" data-i18n="est.d5"></span></td><td class="h">12h</td></tr></tfoot>
           </table>
         </div>
-        <p class="sheet-note" data-i18n="est.demo"></p>
+        <p class="stamp" data-i18n="est.demo"></p>
       </div>
+    </div>
+    <div class="container shelf" id="products">
+      {{productCards}}
     </div>
   </section>
 
@@ -88,11 +91,6 @@
         <article><h3 data-i18n="svc1.t"></h3><p data-i18n="svc1.d"></p><ul data-i18n="svc1.l"></ul></article>
         <article><h3 data-i18n="svc2.t"></h3><p data-i18n="svc2.d"></p><ul data-i18n="svc2.l"></ul></article>
         <article><h3 data-i18n="svc3.t"></h3><p data-i18n="svc3.d"></p><ul data-i18n="svc3.l"></ul></article>
-      </div>
-      <div class="prods" id="products">
-        <h3 data-i18n="pr.title"></h3>
-        <p class="lead" data-i18n="pr.lead"></p>
-        {{productCards}}
       </div>
     </div>
   </section>

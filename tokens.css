@@ -16,11 +16,17 @@
   --color-accent-hover: oklch(37.4% 0.105 270); --color-disabled: oklch(85.4% 0.030 275);
   --color-ink-a10: oklch(30.3% 0.087 270 / 0.1); --color-ink-a12: oklch(30.3% 0.087 270 / 0.12); --color-ink-a15: oklch(30.3% 0.087 270 / 0.15);
   --shadow-header: 0 8px 24px -14px oklch(30.3% 0.087 270 / 0.55); --shadow-menu: 0 16px 24px -16px oklch(30.3% 0.087 270 / 0.5);
+  --color-cotton: oklch(99.4% 0.003 275); --color-desk: oklch(94% 0.09 95);
+  --shade: 35% 0.06 85; --lit: 100% 0.01 95;
+  --edge-stock: inset 0 1px 0 oklch(var(--lit) / 0.9), inset 0 -1px 0 oklch(var(--shade) / 0.07), 0 0 0 0.5px oklch(var(--shade) / 0.22), 0 1px 0 oklch(var(--shade) / 0.12);
+  --cast-stock: 6px 5px 10px -6px oklch(var(--shade) / 0.3); --cast-stock-lift: 12px 10px 18px -8px oklch(var(--shade) / 0.3);
   --shadow-lift: 0 1px 2px oklch(30% 0.087 270 / 0.08), 0 16px 32px -20px oklch(30% 0.087 270 / 0.35);
   --color-accent: oklch(30.3% 0.087 270); --color-accent-ink: oklch(99.4% 0.003 275); --color-focus: oklch(30.3% 0.087 270); --color-focus-on-ink: oklch(87.7% 0.174 93);
-  --font-display: "Bricolage Grotesque", "BIZ UDPGothic", ui-sans-serif, system-ui, sans-serif; --font-body: "BIZ UDPGothic", "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif; --font-outlier: var(--font-body);
+  --font-display: "Bricolage Grotesque", "BIZ UDPGothic", ui-sans-serif, system-ui, sans-serif; --font-body: "BIZ UDPGothic", "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif; --font-outlier: var(--font-body); --font-brand: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
   --radius-card: 12px; --radius-control: 6px; --radius-pill: 999px; --rule-hair: 1px; --shadow-card: none;
   --tracking-display: -0.02em;
 }
 @media (max-width: 60rem) { :root { --gutter: 24px; --section-gap-s: 80px; --section-gap: 96px; --section-gap-l: 120px; } }
 @media (max-width: 40rem) { :root { --gutter: 16px; --section-gap-s: 56px; --section-gap: 72px; --section-gap-l: 96px; --gap-columns: 16px; } }
+/* Japanese pages set everything in one face; the Latin display face stays for the wordmark only */
+:root:lang(ja) { --font-display: var(--font-body); }
