@@ -8,9 +8,9 @@
   --color-error: oklch(52% 0.19 27); --color-success: oklch(50% 0.12 150);
   --container: 1440px; --gutter: 64px; --gap-columns: 32px; --section-gap-s: 120px; --section-gap: 144px; --section-gap-l: 176px;
   --z-base: 1; --z-raised: 10; --z-dropdown: 100; --z-sticky: 200; --z-sticky-nav: 300; --z-modal: 400; --z-toast: 500; --z-tooltip: 600;
-  --color-paper: oklch(99.4% 0.003 275); --color-paper-2: oklch(97.4% 0.005 275); --color-paper-3: oklch(92.6% 0.015 274);
+  --color-paper: oklch(99% 0.006 95); --color-paper-2: oklch(96.5% 0.03 95); --color-paper-3: oklch(93% 0.05 95);
   --color-ink: oklch(30.3% 0.087 270); --color-ink-2: oklch(50% 0.076 273); --color-muted: oklch(71.4% 0.044 275);
-  --color-rule: oklch(90.5% 0.015 274); --color-edge: oklch(60% 0.05 274); --color-rule-strong: oklch(82.3% 0.029 275);
+  --color-rule: oklch(89% 0.025 90); --color-edge: oklch(60% 0.05 274); --color-rule-strong: oklch(82.3% 0.029 275);
   --color-field: oklch(87.7% 0.174 93); --color-field-2: oklch(96.1% 0.068 97); --color-field-hover: oklch(85.7% 0.175 88);
   --color-on-ink: oklch(99.4% 0.003 275); --color-on-ink-2: oklch(85.4% 0.030 275); --color-rule-on-ink: oklch(99.4% 0.003 275 / 0.2);
   --color-accent-hover: oklch(37.4% 0.105 270); --color-disabled: oklch(85.4% 0.030 275);

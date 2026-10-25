@@ -161,7 +161,7 @@ table.cmp { width: 100%; border-collapse: collapse; }
   /* each row restacks: the topic across, then the two answers side by side */
   .cmp tr { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--space-md); border-bottom: 1px solid var(--color-rule-on-ink); padding-block: var(--space-sm); }
   .cmp thead tr { border-bottom: 2px solid var(--color-on-ink); }
-  .cmp thead th { border-bottom: 0; }
+  .cmp thead th { border-bottom: 0; white-space: normal; }
   .cmp thead th:first-child { display: none; }
   .cmp th, .cmp td { border-bottom: 0; padding: 0; width: auto; font-size: var(--text-sm); white-space: normal; }
   .cmp tbody th { grid-column: 1 / -1; margin-bottom: var(--space-2xs); }
@@ -198,6 +198,20 @@ table.cmp { width: 100%; border-collapse: collapse; }
   @keyframes land { from { opacity: 0; translate: 0 24px; } }
   @keyframes press { from { opacity: 0; scale: 1.6; } }
 }
+
+/* every card on the page is the same paper stock as the hero: cotton, a lit edge, a cast falling right */
+:is(.pillars > li, .day, .svc article, .steps li, .plan, .case, .partner, .faq-list, #contactForm, .ways a) {
+  background-color: var(--color-cotton); border-color: transparent; border-radius: 4px; box-shadow: var(--edge-stock), var(--cast-stock);
+}
+.tint :is(.track) { background: var(--color-paper-3); }
+.ways a { transition: translate var(--dur-short) var(--ease-out), box-shadow var(--dur-short) var(--ease-out); }
+.ways a:hover { translate: 0 -2px; border-color: transparent; box-shadow: var(--edge-stock), var(--cast-stock-lift); }
+/* the primary control is navy board stock, lifted on hover and pressed on click */
+.btn { box-shadow: var(--cast-stock); transition: background-color var(--dur-short) var(--ease-out), translate var(--dur-short) var(--ease-out), box-shadow var(--dur-short) var(--ease-out); }
+.btn:hover { translate: 0 -1px; box-shadow: var(--cast-stock-lift); }
+.btn:active { translate: 0 1px; transform: none; box-shadow: var(--cast-stock); }
+.btn:disabled { translate: none; box-shadow: none; }
+@media (max-width: 40rem) { :is(.pillars > li, .day, .svc article, .steps li, .plan, .case, .partner, #contactForm) { padding: var(--space-lg) var(--space-md); } }
 
 /* how to start, on the brand yellow */
 .steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--gap-columns); counter-reset: s; }
@@ -300,7 +314,8 @@ form .btn { justify-self: start; }
 
 /* footer: company details, site map, products, legal; copyright underneath */
 .site-ft { background: var(--color-ink); color: var(--color-on-ink-2); padding-block: var(--space-xl) var(--space-md); font-size: var(--text-sm); --color-focus: var(--color-focus-on-ink); }
-.ft-grid { display: grid; grid-template-columns: minmax(0, 2fr) repeat(3, minmax(0, 1fr)); gap: var(--space-lg) var(--gap-columns); }
+/* the last link column ends on the right edge, like the bottom row */
+.ft-grid { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: var(--space-lg) var(--space-4xl); }
 .ft-co p { margin-top: var(--space-xs); }
 .ft-logo { color: var(--color-on-ink); }
 .ft-logo .mark { width: 32px; height: 32px; border-radius: var(--radius-control); box-shadow: 0 0 0 1px var(--color-rule-on-ink); }
@@ -308,9 +323,10 @@ form .btn { justify-self: start; }
 .ft-h { font-weight: 700; color: var(--color-on-ink); margin-bottom: var(--space-xs); }
 .site-ft li + li { margin-top: var(--space-2xs); }
 .site-ft a:not(.ft-logo) { color: var(--color-on-ink-2); text-decoration: none; }
+.ft-bottom > span:first-child { margin-right: auto; }
 .site-ft a:not(.ft-logo):hover { color: var(--color-on-ink); text-decoration: underline; }
-.ft-bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-xs) var(--space-xl); margin-top: var(--space-lg); padding-top: var(--space-md); border-top: 1px solid var(--color-rule-on-ink); }
-@media (max-width: 60rem) { .ft-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } .ft-co { grid-column: 1 / -1; } }
+.ft-bottom { display: flex; flex-wrap: wrap; justify-content: flex-start; gap: var(--space-xs) var(--space-xl); margin-top: var(--space-lg); padding-top: var(--space-md); border-top: 1px solid var(--color-rule-on-ink); }
+@media (max-width: 60rem) { .ft-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--gap-columns); } .ft-co { grid-column: 1 / -1; } }
 @media (max-width: 40rem) { .ft-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 :is(.site-ft, .band-ink) a:active { color: var(--color-field); }
 

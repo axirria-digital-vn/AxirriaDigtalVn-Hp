@@ -52,9 +52,8 @@ function siteFooter(lang, home, base, privacy) {
     </div>
     <nav aria-label="${dict['ft.sitemap']}"><p class="ft-h">${dict['ft.sitemap']}</p><ul>${sitemap}</ul></nav>
     <nav aria-label="${dict['ft.products']}"><p class="ft-h">${dict['ft.products']}</p><ul>${products}</ul></nav>
-    <nav aria-label="${dict['ft.legal']}"><p class="ft-h">${dict['ft.legal']}</p><ul>${li(privacy, dict['ft.privacy'])}</ul></nav>
   </div>
-  <div class="wrap ft-bottom"><span>© 2026 Axirria Digital Vietnam Limited Company</span><span>${dict['ft.partner']}</span></div>
+  <div class="wrap"><div class="ft-bottom"><span>© 2026 Axirria Digital Vietnam Limited Company</span><span>${dict['ft.partner']}</span><a href="${privacy}">${dict['ft.privacy']}</a></div></div>
 </footer>`;
 }
 
