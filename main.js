@@ -6,6 +6,23 @@
 
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  // News: the latest NEWS_SHOWN items, the rest behind a button (all visible without script)
+  var NEWS_SHOWN = 3, news = document.querySelector('.news');
+  if (news && news.children.length > NEWS_SHOWN) {
+    var extra = [].slice.call(news.children, NEWS_SHOWN), more = document.createElement('button');
+    more.type = 'button';
+    more.className = 'news-more';
+    more.setAttribute('aria-expanded', 'false');
+    var setNews = function (open) {
+      extra.forEach(function (li) { li.hidden = !open; });
+      more.setAttribute('aria-expanded', open);
+      more.textContent = dict[open ? 'nw.less' : 'nw.more'];
+    };
+    more.addEventListener('click', function () { setNews(more.getAttribute('aria-expanded') !== 'true'); });
+    news.after(more);
+    setNews(false);
+  }
+
   // Munemo demo
   var sumBtn = $('sumBtn');
   if (sumBtn) {

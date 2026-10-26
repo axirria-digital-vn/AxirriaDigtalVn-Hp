@@ -82,8 +82,9 @@ html:lang(ja) .hero h1 { font-size: var(--text-section); letter-spacing: -0.01em
 .head .lead { max-width: 60ch; }
 
 /* the estimate: the signature, opened as a case */
-.sheet { position: relative; padding: var(--space-xl); border-radius: 3px; rotate: -1.2deg; }
-.stamp { position: absolute; right: var(--space-xl); bottom: var(--space-md); font-size: var(--text-title); font-weight: 700; color: var(--color-ink); rotate: -7deg; }
+.sheet { position: relative; padding: var(--space-xl); border-radius: 3px; }
+/* the stamp sits on its own line under the total, pressed in slightly askew */
+.stamp { margin-top: var(--space-sm); width: fit-content; margin-left: auto; padding: var(--space-2xs) var(--space-sm); border: 2px solid var(--color-ink); border-radius: 4px; font-size: var(--text-md); font-weight: 700; color: var(--color-ink); rotate: -3deg; }
 .sheet h2 { font-family: var(--font-body); font-size: var(--text-title); max-width: none; }
 .sheet h2 small { display: block; margin-top: var(--space-2xs); font-size: var(--text-sm); font-weight: 400; color: var(--color-ink-2); }
 table.est { width: 100%; border-collapse: collapse; margin-top: var(--space-lg); }
@@ -98,13 +99,13 @@ table.est { width: 100%; border-collapse: collapse; margin-top: var(--space-lg);
 .est tfoot th, .est tfoot td { border-top: 2px solid var(--color-ink); padding-top: var(--space-lg); }
 .est tfoot .d { font-weight: 700; color: var(--color-ink); }
 .est tfoot .h { font-size: var(--text-section); line-height: 1; }
-.est tfoot th, .est tfoot td { padding-bottom: var(--space-xl); }
+.est tfoot th, .est tfoot td { padding-bottom: var(--space-xs); }
 /* on the desk the sheet is compact, so the products below stay on the first screen */
 .hero .sheet { padding: var(--space-lg) var(--space-xl); }
 .hero .est { margin-top: var(--space-sm); }
 .hero .est th, .hero .est td { padding-block: var(--space-xs); }
 .hero .est thead th { padding-top: 0; }
-.hero .est tfoot th, .hero .est tfoot td { padding-top: var(--space-sm); padding-bottom: var(--space-xl); }
+.hero .est tfoot th, .hero .est tfoot td { padding-top: var(--space-sm); padding-bottom: var(--space-xs); }
 .hero .est tfoot .h { font-size: var(--text-section); }
 .hero .est td .bar { margin-bottom: var(--space-3xs); }
 @media (max-width: 40rem) {
@@ -190,7 +191,7 @@ table.cmp { width: 100%; border-collapse: collapse; }
 .prod-t, .prod-more { grid-column: 1 / -1; }
 .prod-t { margin-top: var(--space-xs); color: var(--color-ink-2); font-size: var(--text-sm); }
 .prod-more { margin-top: var(--space-xs); font-weight: 700; font-size: var(--text-sm); text-decoration: underline; text-decoration-color: var(--color-field); text-decoration-thickness: 2px; text-underline-offset: 4px; }
-@media (max-width: 60rem) { .shelf { grid-template-columns: minmax(0, 1fr); } .hero .sheet { rotate: 0deg; } }
+@media (max-width: 60rem) { .shelf { grid-template-columns: minmax(0, 1fr); } }
 @media (prefers-reduced-motion: no-preference) {
   .hero .stock { animation: land 0.8s var(--ease-out) both; }
   .shelf .prod:nth-child(1) { animation-delay: 0.3s; } .shelf .prod:nth-child(2) { animation-delay: 0.45s; } .shelf .prod:nth-child(3) { animation-delay: 0.6s; }
@@ -278,6 +279,9 @@ dl.info dt { color: var(--color-ink-2); }
 dl.info small { color: var(--color-ink-2); font-size: var(--text-sm); }
 .news { margin-top: var(--space-md); border-top: 2px solid var(--color-ink); font-size: var(--text-sm); }
 .news li { display: grid; grid-template-columns: 7em minmax(0, 1fr); gap: var(--space-md); padding-block: var(--space-sm); border-bottom: 1px solid var(--color-rule); }
+.news-more { margin-top: var(--space-sm); min-height: 44px; padding-inline: var(--space-md); font-weight: 700; font-size: var(--text-sm); color: var(--color-ink); background: var(--color-cotton); border: 0; border-radius: 4px; box-shadow: var(--edge-stock), var(--cast-stock); cursor: pointer; transition: translate var(--dur-short) var(--ease-out); }
+.news-more:hover { translate: 0 -1px; }
+.news-more:active { translate: 0 1px; }
 .news time { font-family: var(--font-display); font-weight: 700; color: var(--color-ink-2); font-variant-numeric: tabular-nums; }
 @media (max-width: 60rem) { .about { grid-template-columns: minmax(0, 1fr); gap: var(--space-2xl); } }
 @media (max-width: 40rem) {
