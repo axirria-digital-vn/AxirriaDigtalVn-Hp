@@ -186,12 +186,12 @@
       </div>
       <form id="contactForm" action="{{cfg.formEndpoint}}" method="POST">
         <div class="row2">
-          <label><span data-i18n="f.name"></span><input name="name" required autocomplete="name"></label>
-          <label><span data-i18n="f.company"></span><input name="company" autocomplete="organization"></label>
+          <label><span data-i18n="f.name"></span><input name="name" required maxlength="100" autocomplete="name"></label>
+          <label><span data-i18n="f.company"></span><input name="company" maxlength="200" autocomplete="organization"></label>
         </div>
-        <label><span data-i18n="f.email"></span><input type="email" name="email" required autocomplete="email"></label>
+        <label><span data-i18n="f.email"></span><input type="email" name="email" required maxlength="200" autocomplete="email"></label>
         <label><span data-i18n="f.topic"></span><select name="topic" data-i18n="f.topics"></select></label>
-        <label><span data-i18n="f.msg"></span><textarea name="message" rows="5" required></textarea></label>
+        <label><span data-i18n="f.msg"></span><textarea name="message" rows="5" required maxlength="5000"></textarea></label>
         <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
         <input type="hidden" name="ts">
         {{turnstile}}

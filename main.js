@@ -91,8 +91,39 @@
         'error-callback': function () { sync(); },
       });
     })();
+    // after Lucian UX/UI #244 (MIT): submit stays clickable while fields are wrong; a send attempt marks
+    // each bad field (aria-invalid + a message under it) and takes focus to the first one.
+    // Same rules as worker.js parseInquiry; maxlength in the template mirrors its LIMITS.
+    form.noValidate = true; // our messages replace the browser's bubbles (without JS the browser validates)
+    var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/, attempted = false, sending = false;
+    var checked = [form.elements.name, form.elements.email, form.elements.message, form.elements.privacy_consent];
+    var problem = function (el) {
+      if (el.type === 'checkbox') return el.checked ? '' : 'f.e.consent';
+      var v = el.value.trim();
+      if (!v) return 'f.e.required';
+      return el.type === 'email' && !EMAIL_RE.test(v) ? 'f.e.email' : '';
+    };
+    var mark = function (el) {
+      var key = problem(el), id = 'err-' + el.name, p = document.getElementById(id);
+      var ids = (el.getAttribute('aria-describedby') || '').split(' ').filter(function (x) { return x && x !== id; });
+      if (key) {
+        if (!p) { p = document.createElement('span'); p.id = id; p.className = 'f-err'; p.setAttribute('aria-hidden', 'true'); el.closest('label').append(p); }
+        p.textContent = dict[key];
+        ids.push(id);
+        el.setAttribute('aria-invalid', 'true');
+      } else {
+        if (p) p.remove();
+        el.removeAttribute('aria-invalid');
+      }
+      if (ids.length) el.setAttribute('aria-describedby', ids.join(' ')); else el.removeAttribute('aria-describedby');
+      return !key;
+    };
+    // While typing only clear a fixed error; on leaving a field (after the first attempt) show it again.
+    ['input', 'change'].forEach(function (ev) { form.addEventListener(ev, function (e) { if (e.target.hasAttribute('aria-invalid') && !problem(e.target)) mark(e.target); }); });
+    form.addEventListener('focusout', function (e) { if (attempted && checked.indexOf(e.target) >= 0) mark(e.target); });
+
     var sync = function () {
-      send.disabled = !form.checkValidity() || !captchaOk() || coolingDown();
+      send.disabled = sending || !captchaOk() || coolingDown();
       if (coolingDown() && !msg.textContent) msg.textContent = dict['f.wait'];
     };
     setInterval(function () { if (!coolingDown() && msg.textContent === dict['f.wait']) msg.textContent = ''; sync(); }, 5000);
@@ -101,6 +132,10 @@
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       if (send.disabled) return;
+      attempted = true;
+      var bad = checked.filter(function (el) { return !mark(el); });
+      if (bad.length) { bad[0].focus(); return; }
+      sending = true;
       send.disabled = true; // no double submits while sending
       msg.textContent = dict['f.sending'];
       msg.insertAdjacentHTML('beforeend', '<span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>');
@@ -110,10 +145,10 @@
           // Log the server's reason for support/debugging (visible only in DevTools).
           if (!r.ok) return r.text().then(function (t) { console.warn('contact form error', r.status, t); throw 0; });
           try { localStorage.setItem(KEY, Date.now()); } catch (e) {}
-          form.reset(); stamp(); if (captchaId !== null) turnstile.reset(captchaId); msg.textContent = dict['f.ok'];
+          form.reset(); attempted = false; stamp(); if (captchaId !== null) turnstile.reset(captchaId); msg.textContent = dict['f.ok'];
         })
         .catch(function () { msg.textContent = dict['f.err']; })
-        .then(sync);
+        .then(function () { sending = false; sync(); });
     });
   }
 })();
