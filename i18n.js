@@ -148,6 +148,7 @@ var I18N = {
     'f.sending': '送信しています',
     'f.ok': '送信しました。1営業日以内に担当者からご連絡します。',
     'f.err': '送信できませんでした。お手数ですが、メールでご連絡ください。',
+    'f.e.required': 'この項目を入力してください。', 'f.e.email': 'メールアドレスの形式で入力してください（例：name@example.com）。', 'f.e.consent': '送信するには、個人情報保護方針への同意が必要です。',
     'ft.partner': 'パートナー：有限会社アクシリア（日本）'
   },
 
@@ -298,6 +299,7 @@ var I18N = {
     'f.sending': 'Sending',
     'f.ok': 'Message sent. We will reply within one business day.',
     'f.err': 'The message could not be sent. Please email us instead.',
+    'f.e.required': 'Please fill in this field.', 'f.e.email': 'Enter an email address like name@example.com.', 'f.e.consent': 'Please agree to the Privacy Policy to send your message.',
     'ft.partner': 'Partner: Axirria Co., Ltd. (Japan)'
   }
 };

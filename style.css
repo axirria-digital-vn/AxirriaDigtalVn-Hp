@@ -319,7 +319,11 @@ input:disabled, select:disabled, textarea:disabled { opacity: 0.55; cursor: not-
 form .btn { justify-self: start; }
 #formMsg { font-size: var(--text-sm); min-height: 1lh; }
 #contactForm .cf-turnstile { min-height: 65px; width: 100%; }
-.consent { display: flex; align-items: center; gap: var(--space-sm); font-weight: 400; }
+.consent { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-sm); font-weight: 400; }
+/* per-field errors, shown after the first send attempt */
+.f-err { flex-basis: 100%; color: var(--color-error); font-size: var(--text-sm); font-weight: 700; }
+[aria-invalid="true"]:is(input, textarea) { border-color: var(--color-error); box-shadow: inset 0 0 0 1px var(--color-error); }
+.consent input[aria-invalid="true"] { outline: 2px solid var(--color-error); outline-offset: 2px; }
 .consent input { width: 20px; height: 20px; min-height: 0; flex: none; accent-color: var(--color-ink); }
 .consent a { font-weight: 700; }
 .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
