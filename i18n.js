@@ -40,7 +40,7 @@ var I18N = {
     'nav.company': '会社概要',
     'nav.contact': 'お問い合わせ',
 
-    'hero.title': '<span>開発期間を、</span><br><span>月単位から日単位へ。</span>',
+    'hero.title': '<span>開発期間を、</span><br><span>月単位から<mark>日単位へ</mark>。</span>',
     'hero.lead': 'AIを熟知したエンジニアが機能ごとに時間単位でお見積りし、短期間で確実に形にします。',
    
    
@@ -190,7 +190,7 @@ var I18N = {
     'nav.company': 'Company',
     'nav.contact': 'Contact',
 
-    'hero.title': '<span>Development time,</span><br><span>from months to days.</span>',
+    'hero.title': '<span>Development time,</span><br><span>from months <mark>to days</mark>.</span>',
     'hero.lead': 'Engineers who know AI estimate every feature in hours and deliver it quickly and reliably.',
    
    

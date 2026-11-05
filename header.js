@@ -13,6 +13,27 @@
   addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
+  // after Lucian UX/UI #275 (MIT): the menu marks the section being read (aria-current="location").
+  // Only same-page #hash links whose target exists; product pages link to /#.. and are left alone.
+  var spy = [].slice.call(document.querySelectorAll('.site-hd .menu a[href^="#"]'))
+    .map(function (a) { return { a: a, el: document.getElementById(a.getAttribute('href').slice(1)) }; })
+    .filter(function (s) { return s.el; });
+  if (spy.length) {
+    var onSpy = function () {
+      // the menu is not in page order, so pick the lowest section whose top has passed under the header
+      var y = shown().getBoundingClientRect().bottom + 40, end = innerHeight + scrollY >= document.documentElement.scrollHeight - 2, cur = null, top = -Infinity;
+      spy.forEach(function (s) {
+        var t = s.el.getBoundingClientRect().top;
+        // at the very bottom the last section may never reach the line; count it as read
+        if ((end || t <= y) && t > top) { top = t; cur = s; }
+      });
+      spy.forEach(function (s) { if (s === cur) s.a.setAttribute('aria-current', 'location'); else s.a.removeAttribute('aria-current'); });
+    };
+    addEventListener('scroll', onSpy, { passive: true });
+    addEventListener('resize', onSpy);
+    onSpy();
+  }
+
   // Product pages: the language switch changes the header only; the visitor stays on the page.
   document.querySelectorAll('.site-hd .lang a[data-lang]').forEach(function (a) {
     a.addEventListener('click', function (e) {
