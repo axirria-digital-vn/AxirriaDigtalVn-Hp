@@ -26,6 +26,7 @@
 .site-hd .menu{display:flex;gap:var(--space-lg);list-style:none;font-size:.92rem}
 .site-hd .menu a{text-decoration:none;white-space:nowrap}
 .site-hd .menu a:hover{text-decoration:underline;text-underline-offset:5px}
+.site-hd .menu a[aria-current=location]{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:5px}
 .site-hd .lang{display:flex;flex-wrap:nowrap;gap:0;background:var(--color-ink-a10);border-radius:6px;padding:var(--space-2xs);font-size:16px}
 .site-hd .lang a{font-size:.82rem;font-weight:700;line-height:1.8;padding:var(--space-2xs) var(--space-sm);border:0;border-radius:4px;color:var(--indigo-2);text-decoration:none;white-space:nowrap}
 .site-hd .lang a[aria-current]{background:var(--white);color:var(--indigo)}

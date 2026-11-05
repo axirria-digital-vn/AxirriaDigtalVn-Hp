@@ -6,6 +6,17 @@
 
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  // Reveal blocks (.reveal) once when they scroll into view; CSS hides them only under .js,
+  // so without script (or IntersectionObserver) everything is simply shown.
+  var reveals = document.querySelectorAll('.reveal');
+  if (reveals.length && 'IntersectionObserver' in window) {
+    document.documentElement.classList.add('js');
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } });
+    }, { rootMargin: '0px 0px -10% 0px' });
+    reveals.forEach(function (el) { io.observe(el); });
+  }
+
   // News: the latest NEWS_SHOWN items, the rest behind a button (all visible without script)
   var NEWS_SHOWN = 3, news = document.querySelector('.news');
   if (news && news.children.length > NEWS_SHOWN) {

@@ -66,6 +66,13 @@ section[id] { scroll-margin-top: calc(76px + var(--space-md)); }
 .hero-text { display: grid; justify-items: start; gap: var(--space-lg); }
 .hero h1 { font-size: var(--text-display); font-weight: 800; }
 html:lang(ja) .hero h1 { font-size: var(--text-section); letter-spacing: -0.01em; }
+/* highlighter on the key phrase; stays drawn when motion is off */
+.hero h1 mark { color: inherit; background: linear-gradient(var(--color-field), var(--color-field)) no-repeat 0 88% / 100% 38%; }
+@media (prefers-reduced-motion: no-preference) {
+  /* after Lucian UX/UI #281 (MIT): the pen sweeps left to right once the sheet has landed */
+  .hero h1 mark { animation: sweep 0.7s var(--ease-in-out) 0.9s both; }
+  @keyframes sweep { from { background-size: 0% 38%; } }
+}
 .hero .lead { font-size: var(--text-md); max-width: 36ch; }
 .bar { display: block; height: 8px; width: var(--w); min-width: 6px; border-radius: 2px; background: var(--color-ink-2); transform-origin: left; }
 @media (prefers-reduced-motion: no-preference) {
@@ -137,6 +144,15 @@ table.est { width: 100%; border-collapse: collapse; margin-top: var(--space-lg);
 .axis { display: flex; justify-content: space-between; margin-left: calc(10em + var(--space-sm)); font-size: var(--text-sm); color: var(--color-ink-2); font-variant-numeric: tabular-nums; }
 .day .day-n { margin-top: var(--space-sm); font-size: var(--text-sm); }
 @media (max-width: 60rem) { .pillars { grid-template-columns: minmax(0, 1fr); } }
+@media (prefers-reduced-motion: no-preference) {
+  /* after Lucian UX/UI #251 (MIT): cards rise in once, left to right; hidden only when main.js has set .js */
+  .js .reveal:is(.pillars, .svc) > * { transition: opacity var(--dur-long) var(--ease-out), translate var(--dur-long) var(--ease-out); }
+  .js .reveal:is(.pillars, .svc) > :nth-child(2) { transition-delay: 0.08s; } .js .reveal:is(.pillars, .svc) > :nth-child(3) { transition-delay: 0.16s; } .js .reveal:is(.pillars, .svc) > :nth-child(4) { transition-delay: 0.24s; }
+  .js .reveal:not(.is-in):is(.pillars, .svc) > * { opacity: 0; translate: 0 12px; }
+  /* after Lucian UX/UI #370 (MIT): the day's bars fill from the left when the timeline comes into view */
+  .js .day.reveal .track i { transform-origin: left; transition: transform 0.8s var(--ease-out) 0.15s; }
+  .js .day.reveal:not(.is-in) .track i { transform: scaleX(0); }
+}
 @media (max-width: 40rem) {
   .pillars > li, .svc article, .case, .plan, .partner { padding: var(--space-lg); }
   .faq-list { padding-inline: var(--space-md); }
